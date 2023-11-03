@@ -21,7 +21,7 @@ module.exports = {
         pressedBlue: "#E2E8F2",
         purple: "#9747FF",
         green: "#4FE8B7",
-        white: "#FEFEFF",
+        white: "#fff",
         "light-grey": "#F7F7F9",
         border: "#D9DBDE",
         grey: "#AEB1B7",

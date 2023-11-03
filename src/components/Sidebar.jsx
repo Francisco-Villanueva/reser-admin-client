@@ -72,7 +72,7 @@ export default function Sidebar() {
           isSmall={isSidebarSmall}
           icon={<SettingsIcon />}
           title="Settings"
-          href="/"
+          href="/settings"
         />
       </section>
     </aside>

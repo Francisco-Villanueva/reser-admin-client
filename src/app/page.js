@@ -4,7 +4,6 @@ import Button from "@/commons/Button";
 import { AddIcon, GridLayoutIcon, TableDisplayIcon } from "@/commons/Icons";
 import Aside from "@/components/Aside";
 import BarberCard from "@/components/BarberCard";
-import Navbar from "@/components/Navbar";
 import NewBarberForm from "@/components/NewBarberForm";
 import TableTeam from "@/components/TableTeam";
 import { useAdminContext } from "@/context/AdminContext";
