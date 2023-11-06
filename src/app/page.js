@@ -41,7 +41,11 @@ export default function Home() {
 
               .sort((a, b) => a.id - b.id)
               ?.map((barber) => (
-                <BarberCard barber={barber} className={"w-full"} />
+                <BarberCard
+                  barber={barber}
+                  className={"w-full"}
+                  key={barber.id}
+                />
               ))}
           </div>
         )}

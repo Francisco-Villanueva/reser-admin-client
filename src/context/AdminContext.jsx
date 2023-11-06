@@ -7,7 +7,8 @@ const initialState = {
   barbers: [],
   horarios: [],
 };
-const API_URL = "http://localhost:4000/api";
+
+const API_URL = "https://reset-api-h9a7.onrender.com/api";
 export const AdminContext = createContext(initialState);
 
 export function AdminProvider({ children }) {
