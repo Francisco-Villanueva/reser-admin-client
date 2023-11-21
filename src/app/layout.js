@@ -15,20 +15,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AdminProvider>
-          <div className="flex ">
-            <Sidebar />
-
-            <div className="w-full   max-h-[100%] px-6">
-              <Navbar
-                className="  w-full h-[10vh]  "
-                title={"Administracion"}
-              />
-
-              <div className="max-h-[85vh] h-[85vh]">{children}</div>
-            </div>
-          </div>
-        </AdminProvider>
+        <AdminProvider>{children}</AdminProvider>
       </body>
     </html>
   );
