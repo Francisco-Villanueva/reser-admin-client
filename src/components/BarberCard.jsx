@@ -1,28 +1,19 @@
 "use client";
-
-import Button from "@/commons/Button";
-
-import {
-  ClockIcon,
-  PenIcon,
-  StatusCircleIcon,
-  TrashIcon,
-} from "@/commons/Icons";
+import { ClockIcon } from "@/commons/Icons";
 import useModal from "@/hooks/useModal";
 import Image from "next/image";
 import Aside from "./Aside";
 import BarberDetails from "./BarberDetails";
 import ActionsButtons from "./ActionsButtons";
+import { useAdminContext } from "@/context/AdminContext";
 
-export default function BarberCard({
-  name,
-  lastName,
-  id,
-  img,
-  barber,
-  className,
-}) {
+export default function BarberCard({ barber, className }) {
   const { closeModal, openModal, isModalOpen } = useModal();
+  const { setSelectedBarber } = useAdminContext();
+  const handleSelectBarber = () => {
+    setSelectedBarber(barber);
+    openModal();
+  };
   return (
     <>
       <article
@@ -38,10 +29,7 @@ export default function BarberCard({
             />
 
             <div className="ml-1 flex flex-col gap-2 items-start">
-              <h2
-                className="text-black font-bold cursor-pointer"
-                onClick={() => openModal()}
-              >
+              <h2 className="text-black font-bold ">
                 {barber.name} {barber.lastName}
               </h2>
               <b className="text-dark-grey">#00{barber.id}</b>
@@ -63,7 +51,10 @@ export default function BarberCard({
             </div>
           </div>
 
-          <ActionsButtons openEdit={openModal} barber={barber} />
+          <ActionsButtons
+            barber={barber}
+            handleSelectBarber={handleSelectBarber}
+          />
         </header>
       </article>
       {isModalOpen ? (
@@ -71,14 +62,12 @@ export default function BarberCard({
           title={
             <p>
               {barber.name}
-              <span className="text-dark-grey ml-1">
-                #00{barber.id || "a"}{" "}
-              </span>{" "}
+              <span className="text-dark-grey ml-1">#00{barber.id}</span>{" "}
             </p>
           }
           closeModal={closeModal}
         >
-          <BarberDetails barber={barber} />
+          <BarberDetails />
         </Aside>
       ) : null}
     </>

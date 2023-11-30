@@ -5,16 +5,18 @@ import Aside from "@/components/Aside";
 import BarberCard from "@/components/BarberCard";
 import Loader from "@/components/Loader";
 import NewBarberForm from "@/components/NewBarberForm";
+import TableTeam from "@/components/TableTeam";
 import { useAdminContext } from "@/context/AdminContext";
 import useModal from "@/hooks/useModal";
+import { ApiServices } from "@/services/workhours.services";
 import React, { useEffect, useState } from "react";
 
 export default function page() {
-  const { barbers, getAllBarbers } = useAdminContext();
+  const { barbers, setBarbers } = useAdminContext();
   const { openModal, isModalOpen, closeModal } = useModal();
   const [view, setView] = useState("grid");
   useEffect(() => {
-    getAllBarbers();
+    ApiServices.getAllBarbers().then((res) => setBarbers(res.data));
   }, []);
   return (
     <main className=" flex flex-col justify-around gap-4  p-4 h-full  rounded-md border  ">
@@ -52,15 +54,15 @@ export default function page() {
         )}
       </section>
 
-      <Button
-        className={
-          "absolute bottom-[1rem] right-[1rem]  h-10 w-10 rounded-full "
-        }
-        variant="primary"
-        onClick={openModal}
-      >
-        <AddIcon />
-      </Button>
+      <div className="h-10 w-10 absolute bottom-[1rem] right-[1rem]   rounded-full ">
+        <Button
+          variant="primary"
+          className={" rounded-full"}
+          onClick={openModal}
+        >
+          <AddIcon />
+        </Button>
+      </div>
 
       {isModalOpen && (
         <Aside title="New Barber" closeModal={closeModal}>
