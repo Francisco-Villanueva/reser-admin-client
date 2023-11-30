@@ -1,6 +1,6 @@
 import Button from "@/commons/Button";
 import Input from "@/commons/Input";
-import Selecthours from "@/commons/Selecthours";
+import Selecthours from "@/components/Selecthours";
 import { useAdminContext } from "@/context/AdminContext";
 import useInput from "@/hooks/useInput";
 import React, { useState } from "react";

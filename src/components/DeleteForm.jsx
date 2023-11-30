@@ -5,11 +5,14 @@ import React from "react";
 import Image from "next/image";
 import Input from "@/commons/Input";
 import { useAdminContext } from "@/context/AdminContext";
+import { ApiServices } from "@/services/workhours.services";
 
 export default function DeleteForm({ closeModal, barber = {} }) {
-  const { deleteBarber } = useAdminContext();
+  const { setBarbers } = useAdminContext();
   const handleDelete = () => {
-    deleteBarber(barber.id);
+    ApiServices.deleteBarber(barber.id).then((res) => {
+      ApiServices.getAllBarbers().then((res) => setBarbers(res.data));
+    });
     closeModal();
   };
   return (

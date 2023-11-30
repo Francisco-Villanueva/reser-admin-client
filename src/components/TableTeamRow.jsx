@@ -3,31 +3,28 @@ import { DropDownArrow, PenIcon, TrashIcon } from "@/commons/Icons";
 import useModal from "@/hooks/useModal";
 import { getFutureAppointments } from "@/utils/futureAppointments";
 import React from "react";
-import DeleteForm from "./DeleteForm";
 import ActionsButtons from "./ActionsButtons";
-
-export default function TableTeamRow({ barber, handleModal }) {
+import { useAdminContext } from "@/context/AdminContext";
+export default function TableTeamRow({ barber, handleModal, openModal }) {
   const futureAppointments = getFutureAppointments(barber.appointments);
-  console.log(futureAppointments);
-  const { openModal, closeModal, isModalOpen } = useModal();
+  const { openModal: openTurnos, closeModal, isModalOpen } = useModal();
+  const { setSelectedBarber } = useAdminContext();
 
+  const handleSelectBarber = () => {
+    setSelectedBarber(barber);
+    openModal();
+  };
   return (
     <>
       <tr
         key={barber.id}
         className="bg-white text-black border-b-2 border-gray-200 text-left "
       >
-        <td className="  py-4 px-3 font-semibold text-dark-grey ">
-          #00{barber.id}
-        </td>
         <td className="  py-4 px-3">
           <b>
-            {" "}
-            {barber.name} {barber.lastName}{" "}
+            {barber.name} {barber.lastName}
           </b>
         </td>
-        <td className="  py-4 px-3">{barber.start_time}</td>
-        <td className=" py-4 px-3">{barber.end_time}</td>
         <td className=" py-4 px-3 w-[200px] ">
           <p className="bg-black m-auto text-white font-semibold  rounded-full h-6 w-6 text-center  grid place-items-center items text-sm">
             {futureAppointments.length}
@@ -36,9 +33,12 @@ export default function TableTeamRow({ barber, handleModal }) {
 
         <td className=" py-4 px-3 ">
           <div className="flex gap-2">
-            <ActionsButtons openEdit={handleModal} barber={barber} />
+            <ActionsButtons
+              barber={barber}
+              handleSelectBarber={handleSelectBarber}
+            />
             <Button
-              onClick={isModalOpen ? closeModal : openModal}
+              onClick={isModalOpen ? closeModal : openTurnos}
               disabled={futureAppointments.length === 0}
               variant={"text"}
               className="rounded-full"
@@ -53,12 +53,11 @@ export default function TableTeamRow({ barber, handleModal }) {
         </td>
       </tr>
       {isModalOpen && (
-        <tr>
+        <tr className="font-inter">
           <td colSpan={"12"}>
             <table className="flex-col text-sm w-full m-auto rounded-sm overflow-hidden">
               <thead>
                 <tr className="border-b-2 border-gray-200 bg-black text-white text-left">
-                  <th className="py-3 px-3">ID</th>
                   <th className="py-3 px-3">Name</th>
                   <th className="py-3 px-3">Email</th>
                   <th className="py-3 px-3">Phone</th>
@@ -71,10 +70,9 @@ export default function TableTeamRow({ barber, handleModal }) {
               </thead>
               <tbody>
                 {futureAppointments
-                  .sort((a, b) => new Date(b.date) - new Date(a.date))
+                  .sort((a, b) => new Date(a.date) - new Date(b.date))
                   .map((appointment) => (
-                    <tr className="bg-black  text-white font-normal text-left  ">
-                      <td className="py-4 px-2">{appointment.id}</td>
+                    <tr className="bg-black  text-white text-left  ">
                       <td className="py-4 px-2">{appointment.name}</td>
                       <td className="py-4 px-2">{appointment.email}</td>
                       <td className="py-4 px-2">{appointment.phone}</td>
