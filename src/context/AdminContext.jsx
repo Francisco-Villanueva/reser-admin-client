@@ -1,10 +1,14 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const initialState = {
   barbers: [],
   horarios: [],
+  hoursToShow: [],
+  selectedBarber: {},
+  selectedDay: {},
+  currentUser: {},
 };
 
 export const AdminContext = createContext(initialState);
@@ -16,8 +20,12 @@ export function AdminProvider({ children }) {
     hoursToShow: [],
     selectedBarber: {},
     selectedDay: {},
+    currentUser: null,
   });
 
+  const setCurrentUser = async (user) => {
+    setState((state) => ({ ...state, currentUser: user }));
+  };
   const setBarbers = async (barbers) => {
     setState((state) => ({ ...state, barbers }));
   };
@@ -51,6 +59,7 @@ export function AdminProvider({ children }) {
         setBarbers,
         setHoursToShow,
         setSelectedBarber,
+        setCurrentUser,
       }}
     >
       {children}
