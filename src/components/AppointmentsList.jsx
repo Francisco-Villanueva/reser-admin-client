@@ -16,8 +16,6 @@ export default function AppointmentsList() {
       {appointments ? (
         appointments.length ? (
           <TableTeamRow barber={appointments} />
-        ) : appointments.length === 0 ? (
-          <Loader />
         ) : (
           <span className="p-2 w-full bg-error text-white rounded-lg">
             No hay turnos

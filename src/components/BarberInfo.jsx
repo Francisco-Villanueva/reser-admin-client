@@ -5,7 +5,7 @@ import useInput from "@/hooks/useInput";
 import { ApiServices } from "@/services/workhours.services";
 import { message } from "antd";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export default function BarberInfo() {
   const { selectedBarber, setBarbers } = useStore();
@@ -14,6 +14,19 @@ export default function BarberInfo() {
   const userName = useInput(selectedBarber.userName, "required");
   const email = useInput(selectedBarber.email, "email");
 
+  const [disableButton, setDisableButton] = useState(true);
+  useEffect(() => {
+    const isChange = () => {
+      const emailChange = selectedBarber.email !== email.value;
+      const nameChange = selectedBarber.name !== name.value;
+      const lastNameChange = selectedBarber.lastName !== lastName.value;
+      const userNameChange = selectedBarber.userName !== userName.value;
+
+      return emailChange || nameChange || lastNameChange || userNameChange;
+    };
+
+    setDisableButton(isChange);
+  }, [name.value, email.value, lastName.value, userName.value]);
   const handleSubmit = (e) => {
     e.preventDefault();
     ApiServices.updateBarberData(selectedBarber.id, {
@@ -57,7 +70,11 @@ export default function BarberInfo() {
         </div>
       </div>
 
-      <Button variant="primary" className="p-2 rounded-md w-full  ">
+      <Button
+        variant="primary"
+        className="p-2 rounded-md w-full  "
+        disabled={!disableButton}
+      >
         Actualizar
       </Button>
     </form>

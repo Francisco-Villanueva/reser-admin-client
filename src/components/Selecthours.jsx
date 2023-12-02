@@ -71,7 +71,7 @@ export default function Selecthours({ handleChangeHours }) {
           </div>
         ))}
       </section>
-      <div className="grid grid-cols-4  gap-x-10 gap-y-2 ">
+      <div className="grid grid-cols-4 max-sm:grid-cols-3 gap-x-10 gap-y-2 ">
         {hoursToShow ? (
           hoursToShow.map((hour) => (
             <HourCard
