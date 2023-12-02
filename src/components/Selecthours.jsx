@@ -48,7 +48,7 @@ export default function Selecthours({ handleChangeHours }) {
               className={`w-3 h-3 max-sm:w-[10px] max-sm:h-[10px] rounded-full ${
                 type === "Actual"
                   ? "bg-green"
-                  : type === "Nuevo "
+                  : type === "Nuevo"
                   ? "bg-orange-300"
                   : type === "Eliminar "
                   ? "bg-error"
