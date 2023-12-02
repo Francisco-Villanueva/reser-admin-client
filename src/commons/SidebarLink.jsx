@@ -11,13 +11,19 @@ export default function SidebarLink({
   return (
     <Link
       href={`${href}`}
-      className={`flex items-center h-12 ${
+      className={`flex max-sm:flex-col max-sm:justify-center  items-center h-12 ${
         isActive ? "text-blue" : undefined
       } ${className}`}
     >
-      {isActive && <div className="h-full w-1 bg-blue rounded-lg"></div>}
+      {isActive && (
+        <div className="h-full max-sm:h-[2px] w-1 max-sm:w-full  bg-blue rounded-lg"></div>
+      )}
 
-      <div className={`flex gap-2 ${isActive ? "pl-[26px]" : "p-[30px]"}`}>
+      <div
+        className={`flex gap-2 max-sm:p-1 ${
+          isActive ? "pl-[26px]" : "p-[30px]"
+        }`}
+      >
         {icon}
         <span
           className={`${

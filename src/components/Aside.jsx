@@ -11,7 +11,7 @@ export default function Aside({ children, title, closeModal, className = "" }) {
 
       {/* aside */}
       <aside
-        className={`flex flex-col gap-[0px] fixed top-0 right-0 h-full   w-[40%] min-w-[600px] shadow-md shadow-gray-400 pt-10 pb-1 px-10 bg-white z-20 transform transition-transform duration-300 "translate-x-full"`}
+        className={`flex flex-col gap-[0px] fixed top-0 right-0 h-full   w-[600px] max-sm:w-full shadow-md shadow-gray-400 pt-10 pb-1 px-10 bg-white z-20 transform transition-transform duration-300 "translate-x-full"`}
       >
         <header className="flex justify-between items-center ">
           <h2 className="text-2xl font-sans text-black font-semibold">

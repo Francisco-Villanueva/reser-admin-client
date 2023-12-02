@@ -8,34 +8,42 @@ import {
   SettingsIcon,
   ArrowLeft,
   ArrowRight,
+  ListIcon,
 } from "@/commons/Icons";
 import SidebarLink from "@/commons/SidebarLink";
+import { useStore } from "@/context/AdminContext";
+import { usePathname } from "next/navigation";
 
 export default function Sidebar() {
+  const {
+    currentUser: { isAdmin },
+  } = useStore();
   const [showLogo, setShowLogo] = useState(true);
-  const [isSidebarSmall, setIsSidebarSmall] = useState(false);
+  const [isSidebarSmall, setIsSidebarSmall] = useState(true);
 
   const toggleSidebarSize = () => {
     setIsSidebarSmall(!isSidebarSmall);
     setShowLogo(!showLogo);
   };
 
+  const path = usePathname();
   return (
     <aside
-      className={`h-[99.83vh] flex flex-col shadow-sm shadow-grey transition-all ${
+      className={`h-[99.83vh]  flex flex-col max-sm:flex-row  max-sm:h-[10vh] max-sm:border max-sm:w-full max-sm:gap-10 max-sm:px-6 max-sm:items-center shadow-sm shadow-grey transition-all ${
         isSidebarSmall ? "w-20" : "w-64"
       }`}
     >
-      <header className={` grid place-items-center  h-[10vh]     `}>
+      <header className={` grid place-items-center  h-[10vh]   `}>
         <Image
           src={"/images/RESET_C_negro.png"}
           alt="Logo"
           width={50}
+          className="max-sm:w-full "
           height={10}
         />
       </header>
 
-      <div className="h-5">
+      <div className="h-5 max-sm:hidden">
         <hr />
 
         <Button
@@ -47,32 +55,21 @@ export default function Sidebar() {
         />
       </div>
 
-      <section className="flex flex-col flex-[2] gap-4">
+      <section className="flex flex-col max-sm:flex-row flex-[2] gap-4">
         <SidebarLink
           isSmall={isSidebarSmall}
           icon={<DashboardIcon />}
           title="Dashboard"
-          href="/"
-          isActive={true}
+          href="/home/admin"
+          isActive={!path.split("/").includes("turnos")}
         />
 
         <SidebarLink
           isSmall={isSidebarSmall}
-          icon={<PersonsGroupIcon />}
-          title="My Team"
-          href="/"
-          isActive={false}
-        />
-      </section>
-
-      <hr className="my-2" />
-
-      <section className="flex flex-col flex-[-1] h-12 my-4 gap-4">
-        <SidebarLink
-          isSmall={isSidebarSmall}
-          icon={<SettingsIcon />}
-          title="Settings"
-          href="/settings"
+          icon={<ListIcon />}
+          title="Turnos"
+          href={"/home/admin/turnos"}
+          isActive={path.split("/").includes("turnos")}
         />
       </section>
     </aside>
