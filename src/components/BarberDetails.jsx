@@ -1,7 +1,7 @@
 "use client";
 import Button from "@/commons/Button";
 import React, { useEffect, useState } from "react";
-import { useAdminContext } from "@/context/AdminContext";
+import { useStore } from "@/context/AdminContext";
 import Selecthours from "@/components/Selecthours";
 import Input from "@/commons/Input";
 import useInput from "@/hooks/useInput";
@@ -12,7 +12,7 @@ import { message } from "antd";
 import BarberInfo from "./BarberInfo";
 
 export default function BarberDetails() {
-  const { setHoursToShow, selectedBarber } = useAdminContext();
+  const { setHoursToShow, selectedBarber } = useStore();
   const [dateIndex, setDateIndex] = useState(new Date().getDay());
 
   const handleDate = (dateI) => {
@@ -37,7 +37,7 @@ export default function BarberDetails() {
     });
   };
   return (
-    <div className="flex flex-col gap-4 relative  ">
+    <div className="flex flex-col gap-4 relative max-md:text-xs ">
       <BarberInfo />
 
       <section className="flex flex-col gap-4 ">

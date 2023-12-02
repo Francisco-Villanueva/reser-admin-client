@@ -1,12 +1,12 @@
 "use client";
-import { useAdminContext } from "@/context/AdminContext";
+import { useStore } from "@/context/AdminContext";
 import HourCard from "../commons/HourCard";
 import { useEffect, useState } from "react";
 import Button from "../commons/Button";
 import Loader from "./Loader";
 
 export default function Selecthours({ handleChangeHours }) {
-  const { hoursToShow } = useAdminContext();
+  const { hoursToShow } = useStore();
   const [newHours, setNewHours] = useState([]);
   const [deletedHours, setDeletedHours] = useState([]);
   const handleSubmit = () => {
@@ -42,36 +42,34 @@ export default function Selecthours({ handleChangeHours }) {
   return (
     <section className="flex flex-col items-center  gap-4 p-4 border rounded-md">
       <section className="flex gap-6 items-center justify-around text-sm  ">
-        {["Nuevo Horario", "Eliminar Horario", "Horarios Actual"].map(
-          (type) => (
-            <div className="flex gap-1">
-              <div
-                className={`w-3 h-3 rounded-full ${
-                  type === "Horarios Actual"
-                    ? "bg-green"
-                    : type === "Nuevo Horario"
-                    ? "bg-orange-300"
-                    : type === "Eliminar Horario"
-                    ? "bg-error"
-                    : "bg-disabled"
-                }`}
-              >
-                {" "}
-              </div>
-              <p
-                className={`${
-                  type === "Nuevo Horario"
-                    ? "text-orange-300"
-                    : type === "Eliminar Horario"
-                    ? "text-error"
-                    : "text-disabled"
-                }`}
-              >
-                {type}
-              </p>
+        {["Nuevo", "Eliminar ", "Actual"].map((type) => (
+          <div className="flex items-center gap-1 max-sm:text-[10px]">
+            <div
+              className={`w-3 h-3 max-sm:w-[10px] max-sm:h-[10px] rounded-full ${
+                type === "Actual"
+                  ? "bg-green"
+                  : type === "Nuevo "
+                  ? "bg-orange-300"
+                  : type === "Eliminar "
+                  ? "bg-error"
+                  : "bg-disabled"
+              }`}
+            >
+              {" "}
             </div>
-          )
-        )}
+            <p
+              className={`${
+                type === "Nuevo Horario"
+                  ? "text-orange-300"
+                  : type === "Eliminar Horario"
+                  ? "text-error"
+                  : "text-disabled"
+              }`}
+            >
+              {type}
+            </p>
+          </div>
+        ))}
       </section>
       <div className="grid grid-cols-4  gap-x-10 gap-y-2 ">
         {hoursToShow ? (

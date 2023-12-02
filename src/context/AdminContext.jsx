@@ -1,14 +1,18 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
-
+import { createContext, useContext, useState } from "react";
+import { userModel } from "@/types";
 const initialState = {
   barbers: [],
   horarios: [],
   hoursToShow: [],
-  selectedBarber: {},
+  selectedBarber: { ...userModel },
   selectedDay: {},
-  currentUser: {},
+  currentUser: { ...userModel },
+  setBarbers: () => {},
+  setCurrentUser: () => {},
+  setHoursToShow: () => {},
+  setSelectedBarber: () => {},
 };
 
 export const AdminContext = createContext(initialState);
@@ -18,9 +22,9 @@ export function AdminProvider({ children }) {
     barbers: [],
     horarios: [],
     hoursToShow: [],
-    selectedBarber: {},
+    selectedBarber: { ...userModel },
     selectedDay: {},
-    currentUser: null,
+    currentUser: { ...userModel },
   });
 
   const setCurrentUser = async (user) => {
@@ -67,4 +71,4 @@ export function AdminProvider({ children }) {
   );
 }
 
-export const useAdminContext = () => useContext(AdminContext);
+export const useStore = () => useContext(AdminContext);

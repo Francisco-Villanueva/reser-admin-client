@@ -2,6 +2,6 @@
 import AppointmentsList from "@/components/AppointmentsList";
 import React from "react";
 
-export default function BarberPage() {
+export default function TunosListPage() {
   return <AppointmentsList />;
 }
