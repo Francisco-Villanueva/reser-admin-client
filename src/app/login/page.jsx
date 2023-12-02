@@ -41,6 +41,7 @@ export default function page() {
       })
       .catch(() => {
         message.error("Error at Login");
+        setLoading(false);
       });
   };
   return (
