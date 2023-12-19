@@ -1,13 +1,20 @@
 import React from "react";
-import { TrashIcon } from "./Icons";
+import {
+  ClockIcon,
+  MailIcon,
+  PhoneIcon,
+  TableDisplayIcon,
+  TrashIcon,
+} from "./Icons";
 import Ticket from "./Ticket";
 import Button from "./Button";
 import { message } from "antd";
-import { ApiServices, AppointmentServices, AuthServices } from "@/services";
+import { AppointmentServices, AuthServices } from "@/services";
 import { useStore } from "@/context/AdminContext";
 import useModal from "@/hooks/useModal";
 import DeleteLayout from "./DeleteLayout";
 import TitleView from "./TitleView";
+import useDate from "@/hooks/useDate";
 
 function InnerSectionLayout({ children }) {
   return (
@@ -18,38 +25,59 @@ function InnerSectionLayout({ children }) {
 }
 export default function AppointmentCard({ appointment }) {
   const { name, email, phone, date, time, id } = appointment;
-  const { setBarbers, currentUser, setCurrentUser } = useStore();
+  const { currentUser, setCurrentUser, setSelectedBarber, selectedBarber } =
+    useStore();
   const { openModal, isModalOpen, closeModal } = useModal();
   const handleDeleteAppointment = () => {
     AppointmentServices.delete(id).then(() => {
-      AuthServices.getBarber(currentUser.id).then((res) => {
-        setCurrentUser(res.data);
+      AuthServices.getBarber(
+        currentUser.isAdmin ? selectedBarber.id : currentUser.id
+      ).then((res) => {
+        currentUser.isAdmin
+          ? setSelectedBarber(res.data)
+          : setCurrentUser(res.data);
         message.info(`Turno eliminado`);
       });
     });
   };
+  const { formatToYMD } = useDate();
   return (
-    <div className="grid grid-cols-3  rounded-md p-4 max-sm:p-0 items-center  max-md:grid-cols-1 gap-8  max-md:gap-2 max-md:items-center  ">
+    <div className="grid grid-cols-3  rounded-md p-4 max-sm:p-4 items-center  max-md:grid-cols-1 gap-8  max-md:gap-2 max-md:items-center border border-l-black border-l-2  ">
       <section
-        className={` text-xl text-black font-semibold flex gap-1  {${
+        className={` text-xl text-black font-semibold flex gap-1   {${
           currentUser.isAdmin && "max-md:flex-row-reverse"
-        } max-sm:border  max-sm:rounded-md  max-md:justify-between  max-md:border-b  max-md:p-1`}
+        } max-sm:border-2 max-sm:border-black  max-sm:rounded-md  max-md:justify-between   max-md:p-1`}
       >
         {currentUser.isAdmin && (
-          <Button onClick={openModal}>
-            <TrashIcon className={"w-4 text-dark-grey"} />
+          <Button
+            onClick={openModal}
+            className=" border  border-error rounded-md p-1 z-40"
+          >
+            <TrashIcon className={"w-4 text-error "} />
           </Button>
         )}
         <p>{name}</p>
       </section>
 
       <InnerSectionLayout>
-        <Ticket>{email}</Ticket>
-        <Ticket variant="secondary">{phone}</Ticket>
+        <Ticket variant="outline">
+          <MailIcon className="w-3" />
+          {email}
+        </Ticket>
+        <Ticket variant="outline">
+          <PhoneIcon className="w-3" />
+          {phone}
+        </Ticket>
       </InnerSectionLayout>
       <InnerSectionLayout>
-        <Ticket>{date}</Ticket>
-        <Ticket variant="secondary">{time} hs</Ticket>
+        <Ticket variant="outline">
+          <TableDisplayIcon className="w-3" />
+          {formatToYMD(date)}
+        </Ticket>
+        <Ticket variant="outline">
+          <ClockIcon className="w-3" />
+          {time} hs
+        </Ticket>
       </InnerSectionLayout>
 
       {isModalOpen && (

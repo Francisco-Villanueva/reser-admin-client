@@ -18,7 +18,6 @@ export default function layout({ children }) {
     AuthServices.getBarber(barberId).then((res) => {
       const user = res.data;
       setCurrentUser(user);
-
       if (user.isAdmin) {
         ApiServices.getAllBarbers().then((res) => setBarbers(res.data));
         router.push("/home/admin");

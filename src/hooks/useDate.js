@@ -31,6 +31,46 @@ export default function useDate() {
     "Viernes",
     "Sábado",
   ];
+  function formatToYMD(fechaStr) {
+    let fecha = new Date(fechaStr + "T00:00:00");
+    try {
+      const dias = [
+        "Domingo",
+        "Lunes",
+        "Martes",
+        "Miércoles",
+        "Jueves",
+        "Viernes",
+        "Sábado",
+      ];
+      const meses = [
+        "Enero",
+        "Febrero",
+        "Marzo",
+        "Abril",
+        "Mayo",
+        "Junio",
+        "Julio",
+        "Agosto",
+        "Septiembre",
+        "Octubre",
+        "Noviembre",
+        "Diciembre",
+      ];
+
+      const mes = fecha.getMonth();
+      const dia = fecha.getDay();
+      const numero = fecha.getDate();
+      const year = fecha.getFullYear();
+
+      const res = `${dias[dia]} ${numero} de ${meses[mes]} | ${year}`;
+
+      return res;
+    } catch (error) {
+      console.log(error);
+      return "Fecha no válida";
+    }
+  }
 
   function dateFormat_YMD(date) {
     const dia = new Date(date);
@@ -42,5 +82,5 @@ export default function useDate() {
     return `${año}-${mes}-${día}`;
   }
 
-  return { currentDay, dateFormat_YMD, weeksDays };
+  return { currentDay, dateFormat_YMD, weeksDays, formatToYMD };
 }

@@ -557,7 +557,7 @@ export function ChevronRight({ className, color }) {
   );
 }
 
-export function TableDisplayIcon({ className }) {
+export function TableDisplayIcon({ className = "" }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -565,7 +565,7 @@ export function TableDisplayIcon({ className }) {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className={`w-6 h-6 ${className || ""}`}
+      className={className}
     >
       <path
         strokeLinecap="round"
@@ -576,7 +576,7 @@ export function TableDisplayIcon({ className }) {
   );
 }
 
-export function GridLayoutIcon({ className }) {
+export function GridLayoutIcon({ className = "" }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -584,7 +584,7 @@ export function GridLayoutIcon({ className }) {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className={`w-6 h-6 ${className || ""}`}
+      className={className}
     >
       <path
         strokeLinecap="round"
@@ -595,7 +595,7 @@ export function GridLayoutIcon({ className }) {
   );
 }
 
-export function PenIcon({ className }) {
+export function PenIcon({ className = "" }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -603,7 +603,7 @@ export function PenIcon({ className }) {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className={`w-6 h-6 ${className || ""}`}
+      className={className}
     >
       <path
         strokeLinecap="round"
