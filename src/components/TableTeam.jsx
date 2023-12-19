@@ -2,18 +2,22 @@ import useModal from "@/hooks/useModal";
 import Aside from "./Aside";
 import BarberDetails from "./BarberDetails";
 import TableTeamRow from "./TableTeamRow";
-import { useAdminContext } from "@/context/AdminContext";
+import { useStore } from "@/context/AdminContext";
 
 export default function TableTeam({ img, team, className }) {
   const { openModal, closeModal, isModalOpen } = useModal();
-  const { setSelectedBarber, selectedBarber } = useAdminContext();
+  const { setSelectedBarber, selectedBarber } = useStore();
 
   return (
     <>
-      <table className={` flex-col w-full  overflow-hidden ${className || ""}`}>
+      <table
+        className={` flex-col w-full max-sm:text-sm  overflow-hidden ${
+          className || ""
+        }`}
+      >
         <thead>
-          <tr className="border-b-2 border-gray-200  bg-light-grey text-black text-left">
-            <th className="py-3 px-3">Nombre y Apellido</th>
+          <tr className="border-b-2 border-gray-200  bg-light-grey text-black text-left ">
+            <th className="py-3 px-3">Peluquero</th>
             <th className="py-3 px-3">Proximos turnos</th>
             <th>Actions</th>
           </tr>

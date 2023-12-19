@@ -13,13 +13,13 @@ export default function Button({
 }) {
   const btnStyle = {
     variant: {
-      primary:
-        "bg-blue text-white   hover:bg-gradient-to-r from-blue to-green ",
+      primary: "bg-blue text-white   hover:bg-hoverBlue hover:text-blue ",
       secondary: "bg-white border border-blue hover:bg-hoverBlue  text-blue ",
       delete:
         "bg-white  border border-red-500 hover:bg-error hover:text-white text-red-500 ",
       text: "bg-white   text-blue  hover:bg-hoverBlue",
       alert: "text-error    hover:bg-hoverRed",
+      dark: "text-dark-grey  bg-light-grey border  ",
     },
     size: {
       big: "text-lg py-3 px-6",
@@ -36,7 +36,7 @@ export default function Button({
   return (
     <button
       onClick={onClick}
-      className={`text-center flex items-center justify-center  gap-2 font-bold leading-5 capitalize transition-all duration-150 ease-inl ${
+      className={`text-center flex items-center justify-center  gap-2 font-bold leading-5 capitalize  transition-all duration-150 ease-inl ${
         disabled
           ? `${btnStyle.disabled[variant]} ${btnStyle.size[size]}`
           : `${btnStyle.variant[variant]} ${btnStyle.size[size]}`

@@ -1,60 +1,35 @@
 "use client";
 import Button from "@/commons/Button";
+import ChildrenLayout from "@/commons/ChildrenLayout";
 import { AddIcon, GridLayoutIcon, TableDisplayIcon } from "@/commons/Icons";
+import TitleView from "@/commons/TitleView";
 import Aside from "@/components/Aside";
-import BarberCard from "@/components/BarberCard";
+import GridTeam from "@/components/GridTeam";
 import Loader from "@/components/Loader";
 import NewBarberForm from "@/components/NewBarberForm";
 import TableTeam from "@/components/TableTeam";
-import { useAdminContext } from "@/context/AdminContext";
+import { useStore } from "@/context/AdminContext";
 import useModal from "@/hooks/useModal";
 import React, { useState } from "react";
 
 export default function AdminPage() {
-  const { barbers } = useAdminContext();
+  const { barbers } = useStore();
   const { openModal, isModalOpen, closeModal } = useModal();
-  const [view, setView] = useState("grid");
 
   return (
-    <main className=" flex flex-col justify-around gap-4  p-4 h-full  rounded-md border  ">
-      <section className="w-full flex justify-between    ">
-        Filter
-        {view === "grid" ? (
-          <Button onClick={() => setView("table")}>
-            <TableDisplayIcon />
-          </Button>
-        ) : (
-          <Button onClick={() => setView("grid")}>
-            <GridLayoutIcon />
-          </Button>
-        )}
+    <ChildrenLayout className={`flex flex-col justify-around gap-4`}>
+      <section className="w-full flex  justify-between    ">
+        <TitleView>Lista de peluqueros</TitleView>
       </section>
       <hr />
       <section className="   overflow-y-auto    h-full   ">
-        {!barbers.length ? (
-          <Loader />
-        ) : view === "table" ? (
-          <TableTeam team={barbers} />
-        ) : (
-          <div className="grid grid-cols-3 gap-2 ">
-            {barbers
-
-              .sort((a, b) => a.id - b.id)
-              ?.map((barber) => (
-                <BarberCard
-                  barber={barber}
-                  className={"w-full"}
-                  key={barber.id}
-                />
-              ))}
-          </div>
-        )}
+        <GridTeam team={barbers} />
       </section>
 
-      <div className="h-10 w-10 absolute bottom-[1rem] right-[1rem]   rounded-full ">
+      <div className="h-10 w-10 absolute bottom-[1.5rem] right-[1rem]   rounded-full ">
         <Button
           variant="primary"
-          className={" rounded-full"}
+          className={" rounded-full p-1"}
           onClick={openModal}
         >
           <AddIcon />
@@ -62,10 +37,10 @@ export default function AdminPage() {
       </div>
 
       {isModalOpen && (
-        <Aside title="New Barber" closeModal={closeModal}>
+        <Aside title="Peluquero  Nuevo" closeModal={closeModal}>
           <NewBarberForm />
         </Aside>
       )}
-    </main>
+    </ChildrenLayout>
   );
 }
