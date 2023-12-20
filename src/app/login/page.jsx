@@ -45,7 +45,7 @@ export default function page() {
       });
   };
   return (
-    <section class="relative flex h-[100vh] items-center justify-center  ">
+    <section className="relative flex h-[100vh] items-center justify-center  ">
       <div className="w-1/2 h-full bg-white">
         <h2 className="m-10 text-dark-grey font-normal font-inter text-3xl">
           RESET

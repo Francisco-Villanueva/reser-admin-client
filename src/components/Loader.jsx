@@ -6,7 +6,7 @@ export default function Loader() {
       <div className="flex flex-col items-center">
         <svg
           aria-hidden="true"
-          class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-950-600 fill-blue"
+          className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-950-600 fill-blue"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
