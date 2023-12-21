@@ -3,28 +3,30 @@ import Button from "@/commons/Button";
 import ChildrenLayout from "@/commons/ChildrenLayout";
 import AppointmentsList from "@/components/AppointmentsList";
 import { useStore } from "@/context/AdminContext";
-import { AuthServices } from "@/services";
+import { BarberServices } from "@/services/barber.services";
 import React, { useEffect } from "react";
 
 export default function TunosListPage() {
-  const { barbers, selectedBarber, setSelectedBarber, currentUser } =
-    useStore();
+  const { barbers, selectedBarber, setSelectedBarber } = useStore();
 
   useEffect(() => {
-    if (!selectedBarber.id) setSelectedBarber(currentUser);
+    if (!selectedBarber || !selectedBarber.id) {
+      setSelectedBarber(barbers[0]);
+    }
   }, []);
   const handleSelectBarber = (barberId) => {
-    AuthServices.getBarber(barberId).then((res) => {
+    BarberServices.getBarber(barberId).then((res) => {
       setSelectedBarber(res.data);
     });
   };
+
   return (
-    <ChildrenLayout>
+    <ChildrenLayout className="flex flex-col">
       <section className="flex gap-4 p-2">
         {barbers.map((barber) => (
           <Button
             variant={`${
-              !(barber.id === selectedBarber.id) ? "primary" : "secondary"
+              barber.id === selectedBarber?.id ? "primary" : "disabled"
             }`}
             className="  p-2 rounded-md "
             onClick={() => handleSelectBarber(barber.id)}
@@ -33,7 +35,7 @@ export default function TunosListPage() {
           </Button>
         ))}
       </section>
-      <AppointmentsList barber={selectedBarber} />
+      {selectedBarber && <AppointmentsList />}
     </ChildrenLayout>
   );
 }

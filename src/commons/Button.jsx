@@ -4,6 +4,7 @@ export default function Button({
   body,
   variant,
   icon,
+  type = "button",
   className = "",
   disabled = false,
   onClick,
@@ -20,6 +21,7 @@ export default function Button({
       text: "bg-white   text-blue  hover:bg-hoverBlue",
       alert: "text-error    hover:bg-hoverRed",
       dark: "text-dark-grey  bg-light-grey border  ",
+      disabled: "border-blue    text-grey ",
     },
     size: {
       big: "text-lg py-3 px-6",
@@ -36,6 +38,7 @@ export default function Button({
   return (
     <button
       onClick={onClick}
+      type={type}
       className={`text-center flex items-center justify-center  gap-2 font-bold leading-5 capitalize  transition-all duration-150 ease-inl ${
         disabled
           ? `${btnStyle.disabled[variant]} ${btnStyle.size[size]}`

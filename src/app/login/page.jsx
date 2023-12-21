@@ -24,7 +24,6 @@ export default function page() {
   const handleLogin = (e) => {
     e.preventDefault();
     const data = { userName: userName.value, password: password.value };
-
     setLoading(true);
     AuthServices.login(data)
       .then((res) => {
@@ -74,6 +73,7 @@ export default function page() {
 
         <div className="flex flex-col items-center w-5/6 m-auto gap-1">
           <Button
+            type="submit"
             variant="primary"
             className="border-none w-full p-2 rounded-md"
           >

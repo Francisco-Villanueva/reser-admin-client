@@ -1,4 +1,5 @@
 import Button from "@/commons/Button";
+import FloatingLoader from "@/commons/FloatingLoader";
 import Input from "@/commons/Input";
 import { useStore } from "@/context/AdminContext";
 import useInput from "@/hooks/useInput";
@@ -6,24 +7,9 @@ import { ApiServices, AuthServices } from "@/services";
 import { message } from "antd";
 import React, { useState } from "react";
 
-export default function NewBarberForm({}) {
+export default function NewBarberForm({ closeModal }) {
   const { setBarbers } = useStore();
-
-  const [newUser, setNewUser] = useState({
-    name: { value: "", error: null },
-    lastName: { value: "", error: null },
-    email: { value: "", error: null },
-    userName: { value: "", error: null },
-    password: { value: "", error: null },
-  });
-
-  //TODO: COMPLETAR ESTE FORMULARIO PARA CARGAR UN NUEVO BARBER.
-  const handleAddInfo = (key, input) => {
-    setNewUser((prev) => ({
-      ...prev,
-      [key]: { value: input.value, error: input.error },
-    }));
-  };
+  const [loading, setLoading] = useState(false);
 
   const name = useInput("", "required");
   const lastName = useInput("", "required");
@@ -40,12 +26,21 @@ export default function NewBarberForm({}) {
       userName: userName.value,
       password: password.value,
     };
-    AuthServices.register(data).then(() => {
-      message.success(`Peluquero Agregado!`);
-      ApiServices.getAllBarbers().then((res) => {
-        setBarbers(res.data);
+    setLoading(true);
+
+    AuthServices.register(data)
+      .then(() => {
+        message.success(`Peluquero Agregado!`);
+        ApiServices.getAllBarbers().then((res) => {
+          setBarbers(res.data);
+          setLoading(false);
+          closeModal();
+        });
+      })
+      .catch(() => {
+        message.error("Error al crear un nuevo peluquero!");
+        setLoading(false);
       });
-    });
   };
   return (
     <div className="flex flex-col gap-4  h-full  ">
@@ -101,6 +96,7 @@ export default function NewBarberForm({}) {
           Cargar
         </Button>
       </div>
+      {loading && <FloatingLoader />}
     </div>
   );
 }

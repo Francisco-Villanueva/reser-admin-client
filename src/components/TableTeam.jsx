@@ -42,7 +42,7 @@ export default function TableTeam({ img, team, className }) {
           }
           closeModal={closeModal}
         >
-          <BarberDetails />
+          <BarberDetails closeModal={closeModal} />
         </Aside>
       ) : null}
     </>
