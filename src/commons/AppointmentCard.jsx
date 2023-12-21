@@ -42,43 +42,45 @@ export default function AppointmentCard({ appointment }) {
   };
   const { formatToYMD } = useDate();
   return (
-    <div className="grid grid-cols-3  rounded-md p-4 max-sm:p-4 items-center  max-md:grid-cols-1 gap-8  max-md:gap-2 max-md:items-center border border-l-black border-l-2  ">
+    <div className="flex max-md:flex-col justify-between  rounded-md p-4 max-sm:p-4 md:items-center   gap-8  max-md:gap-2  border  ">
       <section
-        className={` text-xl text-black font-semibold flex gap-1   {${
+        className={` text-xl max-md:text-white font-semibold flex gap-1  max-md:bg-black  {${
           currentUser.isAdmin && "max-md:flex-row-reverse"
         } max-sm:border-2 max-sm:border-black  max-sm:rounded-md  max-md:justify-between   max-md:p-1`}
       >
         {currentUser.isAdmin && (
           <Button
             onClick={openModal}
-            className=" border  border-error rounded-md p-1 z-40"
+            className="   bg-error hover:bg-red-700 text-white   rounded-md p-1 z-40"
           >
-            <TrashIcon className={"w-4 text-error "} />
+            <TrashIcon className={"w-4  "} />
           </Button>
         )}
         <p>{name}</p>
       </section>
 
-      <InnerSectionLayout>
-        <Ticket variant="outline">
-          <MailIcon className="w-3" />
-          {email}
-        </Ticket>
-        <Ticket variant="outline">
-          <PhoneIcon className="w-3" />
-          {phone}
-        </Ticket>
-      </InnerSectionLayout>
-      <InnerSectionLayout>
-        <Ticket variant="outline">
-          <TableDisplayIcon className="w-3" />
-          {formatToYMD(date)}
-        </Ticket>
-        <Ticket variant="outline">
-          <ClockIcon className="w-3" />
-          {time} hs
-        </Ticket>
-      </InnerSectionLayout>
+      <div className="flex max-md:flex-col  max-md:w-[90%] m-auto   gap-2 px-2 max-md:px-4 border-l-black border-l-2 ">
+        <InnerSectionLayout>
+          <Ticket variant="outline">
+            <MailIcon className="w-3" />
+            {email}
+          </Ticket>
+          <Ticket variant="outline">
+            <PhoneIcon className="w-3" />
+            {phone}
+          </Ticket>
+        </InnerSectionLayout>
+        <InnerSectionLayout>
+          <Ticket variant="outline">
+            <TableDisplayIcon className="w-3" />
+            {formatToYMD(date)}
+          </Ticket>
+          <Ticket variant="outline">
+            <ClockIcon className="w-3" />
+            {time} hs
+          </Ticket>
+        </InnerSectionLayout>
+      </div>
 
       {isModalOpen && (
         <DeleteLayout

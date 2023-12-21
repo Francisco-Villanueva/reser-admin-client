@@ -38,7 +38,7 @@ export default function AdminPage() {
 
       {isModalOpen && (
         <Aside title="Peluquero  Nuevo" closeModal={closeModal}>
-          <NewBarberForm />
+          <NewBarberForm closeModal={closeModal} />
         </Aside>
       )}
     </ChildrenLayout>

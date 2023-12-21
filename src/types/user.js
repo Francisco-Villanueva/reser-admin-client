@@ -5,5 +5,6 @@ export const userModel = {
   email: "",
   userName: "",
   isAdmin: "",
+  status: "",
   appointments: [],
 };

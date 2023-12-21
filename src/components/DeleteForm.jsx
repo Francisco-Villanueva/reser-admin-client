@@ -1,37 +1,35 @@
 "use client";
-import Button from "@/commons/Button";
-import { IconX } from "@/commons/Icons";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Input from "@/commons/Input";
 import { useStore } from "@/context/AdminContext";
 import { ApiServices } from "@/services/workhours.services";
 import { message } from "antd";
 import DeleteLayout from "@/commons/DeleteLayout";
+import FloatingLoader from "@/commons/FloatingLoader";
 
 export default function DeleteForm({ closeModal, barber = {} }) {
   const { setBarbers } = useStore();
+  const [loading, setLoading] = useState(false);
+
   const handleDelete = () => {
-    ApiServices.deleteBarber(barber.id).then((res) => {
-      message.info("Peluquero eliminado");
-      ApiServices.getAllBarbers().then((res) => setBarbers(res.data));
-    });
-    closeModal();
+    setLoading(true);
+
+    ApiServices.deleteBarber(barber.id)
+      .then((res) => {
+        message.info("Peluquero eliminado");
+        setLoading(false);
+
+        ApiServices.getAllBarbers().then((res) => setBarbers(res.data));
+        closeModal();
+      })
+      .catch(() => {
+        message.error("Error al borrar un nuevo peluquero!");
+        setLoading(false);
+      });
   };
   return (
-    <DeleteLayout closeModal={closeModal}>
-      {/* <div className=" relative w-[50%]  h-[50%] bg-white border rounded-md p-4 flex flex-col gap-4 justify-between max-sm:w-[90%]  max-sm:h-[60%]  ">
-        <Button
-          variant={"text"}
-          size={"small"}
-          className="absolute right-4 rounded-md p-2 max-sm:text-sm "
-          onClick={closeModal}
-        >
-          <>
-            <IconX className="w-[15px]" />
-            Canclear
-          </>
-        </Button> */}
+    <DeleteLayout closeModal={closeModal} handleDelete={handleDelete}>
       <h2 className="text-blue font-bold text-2xl max-sm:text-lg p-2">
         Eliminar peluquero
       </h2>
@@ -50,16 +48,7 @@ export default function DeleteForm({ closeModal, barber = {} }) {
           </div>
         </div>
       </div>
-
-      {/* <Button
-          variant={"delete"}
-          size={"small"}
-          className="rounded-md w-1/2 m-auto"
-          onClick={handleDelete}
-        >
-          Eliminar
-        </Button> */}
-      {/* </div> */}
+      {loading && <FloatingLoader />}
     </DeleteLayout>
   );
 }

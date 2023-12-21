@@ -1,11 +1,10 @@
 "use client";
-import { ClockIcon } from "@/commons/Icons";
 import useModal from "@/hooks/useModal";
-import Image from "next/image";
 import Aside from "./Aside";
 import BarberDetails from "./BarberDetails";
 import ActionsButtons from "./ActionsButtons";
 import { useStore } from "@/context/AdminContext";
+import BarberStatus from "@/commons/BarberStatus";
 
 export default function BarberCard({ barber }) {
   const { closeModal, openModal, isModalOpen } = useModal();
@@ -15,26 +14,19 @@ export default function BarberCard({ barber }) {
     openModal();
   };
   return (
-    <>
+    <div>
       <article
-        className={`flex gap-2  items-start justify-between rounded-lg border border-border p-4 font-inter `}
+        className={`flex gap-2  items-start justify-between rounded-lg border border-border p-4 font-inter  `}
       >
-        <div className="flex w-2/3 gap-2">
-          <div className="relative w-full">
-            <Image
-              src={"/images/barber1.jpg"}
-              alt="colabPhoto"
-              fill
-              objectFit="contain"
-            />
-          </div>
-
-          <div className="ml-1 flex flex-col gap-2 items-start">
-            <h2 className="text-black font-bold ">
-              {barber.name} {barber.lastName}
-            </h2>
-            <b className="text-dark-grey">#00{barber.id}</b>
-          </div>
+        <div className=" flex  gap-2 items-center">
+          <BarberStatus status={barber.status} />
+          <h2
+            className={`${
+              barber.status === "active" ? "text-black font-bold" : "text-grey "
+            } `}
+          >
+            {barber.name} {barber.lastName}
+          </h2>
         </div>
 
         <ActionsButtons
@@ -47,14 +39,14 @@ export default function BarberCard({ barber }) {
           title={
             <p>
               {barber.name}
-              <span className="text-dark-grey ml-1">#00{barber.id}</span>{" "}
+              <span className="text-dark-grey ml-1">#00{barber.id}</span>
             </p>
           }
           closeModal={closeModal}
         >
-          <BarberDetails />
+          <BarberDetails closeModal={closeModal} />
         </Aside>
       ) : null}
-    </>
+    </div>
   );
 }
