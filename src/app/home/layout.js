@@ -8,7 +8,8 @@ import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
 export default function layout({ children }) {
-  const { currentUser, setCurrentUser, setBarbers } = useStore();
+  const { currentUser, setCurrentUser, setBarbers, setSelectedBarber } =
+    useStore();
   const router = useRouter();
   useEffect(() => {
     const barberId = localStorage.getItem("userId");
@@ -22,6 +23,7 @@ export default function layout({ children }) {
         ApiServices.getAllBarbers().then((res) => setBarbers(res.data));
         router.push("/home/admin");
       } else {
+        setSelectedBarber(user);
         router.push("/home/barber");
       }
     });

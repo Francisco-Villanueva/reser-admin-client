@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 export default function page() {
-  const { setCurrentUser } = useStore();
+  const { setCurrentUser, setSelectedBarber } = useStore();
   const userName = useInput("", "required");
   const password = useInput("", "required");
   const router = useRouter();
@@ -28,12 +28,18 @@ export default function page() {
     AuthServices.login(data)
       .then((res) => {
         const user = res.data.user;
+        if (user.status === "inactive") {
+          setLoading(false);
+          message.warning("El usuario ingresado se encuentra deshabilitado.");
+          return;
+        }
         localStorage.setItem("userId", user.id);
         setCurrentUser(user);
         message.success("Logged Succesfully!");
         if (user.isAdmin) {
           router.push("/home/admin");
         } else {
+          setSelectedBarber(user);
           router.push("/home/barber");
         }
         setLoading(false);

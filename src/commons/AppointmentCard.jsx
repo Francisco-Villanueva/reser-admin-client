@@ -18,7 +18,7 @@ import useDate from "@/hooks/useDate";
 
 function InnerSectionLayout({ children }) {
   return (
-    <section className="flex  max-2xl:flex-col items-center gap-4 max-md:gap-1 max-md:text-sm w-full m-auto  max-sm:px-2">
+    <section className="flex  max-2xl:flex-col items-center gap-4 max-md:gap-1 max-lg:text-sm w-full m-auto  max-sm:px-2">
       {children}
     </section>
   );
@@ -42,11 +42,9 @@ export default function AppointmentCard({ appointment }) {
   };
   const { formatToYMD } = useDate();
   return (
-    <div className="flex max-md:flex-col justify-between  rounded-md p-4 max-sm:p-4 md:items-center   gap-8  max-md:gap-2  border  ">
+    <div className="flex max-lg:flex-col justify-between  rounded-md p-4 max-sm:p-4 lg:items-center   gap-8  max-md:gap-2  border  ">
       <section
-        className={` text-xl max-md:text-white font-semibold flex gap-1  max-md:bg-black  {${
-          currentUser.isAdmin && "max-md:flex-row-reverse"
-        } max-sm:border-2 max-sm:border-black  max-sm:rounded-md  max-md:justify-between   max-md:p-1`}
+        className={` text-xl max-lg:text-white font-semibold flex gap-1 max-lg:border-2 max-lg:bg-black max-lg:border-black  max-lg:rounded-md  max-lg:justify-between   max-lg:p-1`}
       >
         {currentUser.isAdmin && (
           <Button
@@ -59,7 +57,7 @@ export default function AppointmentCard({ appointment }) {
         <p>{name}</p>
       </section>
 
-      <div className="flex max-md:flex-col  max-md:w-[90%] m-auto   gap-2 px-2 max-md:px-4 border-l-black border-l-2 ">
+      <div className="flex w-[80%] max-md:flex-col  max-md:w-[90%] m-auto   gap-2 px-2 max-md:px-4 border-l-black border-l-2  ">
         <InnerSectionLayout>
           <Ticket variant="outline">
             <MailIcon className="w-3" />
