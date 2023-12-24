@@ -41,15 +41,15 @@ export default function Input({
         {type === "password" && (
           <button
             type="button"
-            className="absolute inset-y-0 right-2  flex items-center "
+            className={`absolute inset-y-0 right-2  flex items-center text-dark-grey`}
             onClick={() => {
               setShowPassword(!showPassword);
             }}
           >
             {showPassword ? (
-              <EyeSlashIcon className="h-5 w-5 text-light-grey " />
+              <EyeSlashIcon className="h-5 w-5 " />
             ) : (
-              <EyeIcon className="h-5 w-5 text-light-grey " />
+              <EyeIcon className="h-5 w-5 " />
             )}
           </button>
         )}
