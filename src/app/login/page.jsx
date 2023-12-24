@@ -55,7 +55,7 @@ export default function page() {
 
   const { isModalOpen,  toggleModal } = useModal();
   return (
-    <section className="  max-h-[100vh] h-[100vh] w-[100vw] flex flex-col  ">
+    <section className="  max-h-[100vh] h-[100vh] w-[100vw] flex flex-col overflow-hidden ">
       <nav className="border w-full p-2 bg-white flex justify-between items-center ">
         <Image src="/logo.png" width={50} height={50} alt="prosam" />
         <Button
@@ -74,13 +74,10 @@ export default function page() {
       <div className="relative  text-white grid place-items-center flex-grow">
         <section className="flex flex-col items-center">
           <Image src="/prosamLogo.png" width={500} height={50} alt="prosam" />
-          <span className="font-extralight">
-            Your living room, our technology
-          </span>
         </section>
         <div
-          className={`absolute right-0 top-0 w-1/3  max-md:w-full  max-md:h-full h-[60%] rounded-b-lg drop-shadow-2xl shadow-xl bg-blue opacity-90 grid place-items-center    transition-translate duration-300  ${
-            isModalOpen ? "translate-x-0" : "translate-x-[100%] w-0" 
+          className={`absolute right-0 top-0   max-md:w-full  max-md:h-full h-[60%]  scroll- rounded-b-lg drop-shadow-2xl shadow-xl bg-blue opacity-90 grid place-items-center  transition-translate duration-300  ${
+            isModalOpen ? "translate-x-0 w-1/3" : "translate-x-[100%]  " 
           }`}
         >
           {isModalOpen && (
@@ -107,8 +104,6 @@ export default function page() {
                 <Button type="submit" className="font-normal ">
                   Login
                 </Button>
-
-                {/* <span className="text-sm font-extralight">Forgot password</span> */}
               </div>
             </form>
           )}
