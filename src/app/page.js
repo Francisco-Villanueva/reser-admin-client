@@ -1,5 +1,5 @@
-"use client";
+'use client'
 
 export default function page() {
-  return null;
+  return null
 }

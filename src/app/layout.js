@@ -1,13 +1,13 @@
-import "./globals.css";
-import { Inter } from "next/font/google";
-import Provider from "./Provider";
+import './globals.css'
+import { Inter } from 'next/font/google'
+import Provider from './Provider'
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: "Reset | Administration",
-  description: "Administration of reset salon",
-};
+  title: 'Reset | Administration',
+  description: 'Administration of reset salon',
+}
 
 export default function RootLayout({ children }) {
   return (
@@ -16,5 +16,5 @@ export default function RootLayout({ children }) {
         <Provider>{children}</Provider>
       </body>
     </html>
-  );
+  )
 }

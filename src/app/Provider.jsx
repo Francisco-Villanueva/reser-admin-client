@@ -1,6 +1,6 @@
-import { AdminProvider } from "@/context/AdminContext";
-import React from "react";
+import { AdminProvider } from '@/context/AdminContext'
+import React from 'react'
 
 export default function Provider({ children }) {
-  return <AdminProvider>{children}</AdminProvider>;
+  return <AdminProvider>{children}</AdminProvider>
 }

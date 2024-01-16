@@ -1,5 +1,5 @@
-import React from "react";
-import BarberCard from "./BarberCard";
+import React from 'react'
+import BarberCard from './BarberCard'
 
 export default function GridTeam({ team = [] }) {
   return (
@@ -10,5 +10,5 @@ export default function GridTeam({ team = [] }) {
           <BarberCard barber={barber} key={barber.id} />
         ))}
     </div>
-  );
+  )
 }

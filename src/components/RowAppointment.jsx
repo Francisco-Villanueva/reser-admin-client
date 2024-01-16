@@ -1,21 +1,21 @@
-"use client";
-import { PhoneIcon, MailIcon } from "@/commons/Icons";
-import useModal from "@/hooks/useModal";
-import React from "react";
+'use client'
+import { PhoneIcon, MailIcon } from '@/commons/Icons'
+import useModal from '@/hooks/useModal'
+import React from 'react'
 
 export default function RowAppointment({ appointment }) {
-  const { openModal, closeModal, isModalOpen } = useModal();
+  const { openModal, closeModal, isModalOpen } = useModal()
 
   return (
     <div
       className={`text-sm p-2 ${
-        isModalOpen && "bg-blue text-white"
+        isModalOpen && 'bg-blue text-white'
       } transition-all duration-100`}
     >
       <li
         onClick={isModalOpen ? closeModal : openModal}
         className={`grid grid-cols-3 gap-2 text-sm  cursor-pointer ${
-          !isModalOpen && "hover:text-black"
+          !isModalOpen && 'hover:text-black'
         } `}
       >
         <span>| {appointment.name}</span>
@@ -33,5 +33,5 @@ export default function RowAppointment({ appointment }) {
         </div>
       )}
     </div>
-  );
+  )
 }
