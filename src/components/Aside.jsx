@@ -1,7 +1,7 @@
-"use client";
-import { IconX } from "@/commons/Icons";
+'use client'
+import { IconX } from '@/commons/Icons'
 
-export default function Aside({ children, title, closeModal, className = "" }) {
+export default function Aside({ children, title, closeModal, className = '' }) {
   return (
     <>
       {/* overlay */}
@@ -29,5 +29,5 @@ export default function Aside({ children, title, closeModal, className = "" }) {
         </div>
       </aside>
     </>
-  );
+  )
 }

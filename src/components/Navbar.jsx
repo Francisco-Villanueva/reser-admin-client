@@ -1,26 +1,26 @@
-import React from "react";
-import Button from "@/commons/Button";
-import { DropDownArrow, UserIcon } from "@/commons/Icons";
-import { useStore } from "@/context/AdminContext";
-import useModal from "@/hooks/useModal";
-import { useRouter } from "next/navigation";
+import React from 'react'
+import Button from '@/commons/Button'
+import { DropDownArrow, UserIcon } from '@/commons/Icons'
+import { useStore } from '@/context/AdminContext'
+import useModal from '@/hooks/useModal'
+import { useRouter } from 'next/navigation'
 
-export default function Navbar({ title, className = "" }) {
-  const { currentUser, setCurrentUser } = useStore();
+export default function Navbar({ title, className = '' }) {
+  const { currentUser, setCurrentUser } = useStore()
 
-  const { isModalOpen, closeModal, openModal } = useModal();
+  const { isModalOpen, closeModal, openModal } = useModal()
 
   const handleOpen = () => {
-    !isModalOpen ? openModal() : closeModal();
-  };
+    !isModalOpen ? openModal() : closeModal()
+  }
 
-  const router = useRouter();
+  const router = useRouter()
   const handleLogOut = () => {
-    router.push("/login");
-  };
+    router.push('/login')
+  }
   return (
     <nav className={`flex justify-between items-center ${className}`}>
-      <h1 className="font-semibold text-xl text-black">{title || ""}</h1>
+      <h1 className="font-semibold text-xl text-black">{title || ''}</h1>
 
       <div
         className="flex flex-col items-center gap-2 relative "
@@ -31,12 +31,12 @@ export default function Navbar({ title, className = "" }) {
             <UserIcon className="w-full h-[1.5rem]" />
             <p>{currentUser?.name}</p>
           </div>
-          <DropDownArrow className={"w-3"} />
+          <DropDownArrow className={'w-3'} />
         </div>
         {isModalOpen && (
           <Button
             className="absolute bottom-[-40px] rounded-md"
-            size={"small"}
+            size={'small'}
             variant="dark"
             onClick={handleLogOut}
           >
@@ -45,5 +45,5 @@ export default function Navbar({ title, className = "" }) {
         )}
       </div>
     </nav>
-  );
+  )
 }

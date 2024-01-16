@@ -1,18 +1,18 @@
-import useModal from "@/hooks/useModal";
-import Aside from "./Aside";
-import BarberDetails from "./BarberDetails";
-import TableTeamRow from "./TableTeamRow";
-import { useStore } from "@/context/AdminContext";
+import useModal from '@/hooks/useModal'
+import Aside from './Aside'
+import BarberDetails from './BarberDetails'
+import TableTeamRow from './TableTeamRow'
+import { useStore } from '@/context/AdminContext'
 
 export default function TableTeam({ img, team, className }) {
-  const { openModal, closeModal, isModalOpen } = useModal();
-  const { setSelectedBarber, selectedBarber } = useStore();
+  const { openModal, closeModal, isModalOpen } = useModal()
+  const { setSelectedBarber, selectedBarber } = useStore()
 
   return (
     <>
       <table
         className={` flex-col w-full max-sm:text-sm  overflow-hidden ${
-          className || ""
+          className || ''
         }`}
       >
         <thead>
@@ -36,8 +36,8 @@ export default function TableTeam({ img, team, className }) {
             <p>
               {selectedBarber.name}
               <span className="text-dark-grey ml-1">
-                #00{selectedBarber.id || "a"}{" "}
-              </span>{" "}
+                #00{selectedBarber.id || 'a'}{' '}
+              </span>{' '}
             </p>
           }
           closeModal={closeModal}
@@ -46,5 +46,5 @@ export default function TableTeam({ img, team, className }) {
         </Aside>
       ) : null}
     </>
-  );
+  )
 }

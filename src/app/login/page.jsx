@@ -1,59 +1,59 @@
-"use client";
-import Button from "@/commons/Button";
-import FloatingLoader from "@/commons/FloatingLoader";
-import { ArrowLeft } from "@/commons/Icons";
-import Input from "@/commons/Input";
-import Loader from "@/components/Loader";
-import { useStore } from "@/context/AdminContext";
-import useInput from "@/hooks/useInput";
-import useModal from "@/hooks/useModal";
-import { AuthServices } from "@/services/auth.services";
-import { message } from "antd";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+'use client'
+import Button from '@/commons/Button'
+import FloatingLoader from '@/commons/FloatingLoader'
+import { ArrowLeft } from '@/commons/Icons'
+import Input from '@/commons/Input'
+import Loader from '@/components/Loader'
+import { useStore } from '@/context/AdminContext'
+import useInput from '@/hooks/useInput'
+import useModal from '@/hooks/useModal'
+import { AuthServices } from '@/services/auth.services'
+import { message } from 'antd'
+import Image from 'next/image'
+import { useRouter } from 'next/navigation'
+import React, { useEffect, useState } from 'react'
 
 export default function page() {
-  const { setCurrentUser, setSelectedBarber } = useStore();
-  const userName = useInput("", "required");
-  const password = useInput("", "required");
-  const router = useRouter();
+  const { setCurrentUser, setSelectedBarber } = useStore()
+  const userName = useInput('', 'required')
+  const password = useInput('', 'required')
+  const router = useRouter()
 
   useEffect(() => {
-    localStorage.clear();
-    setCurrentUser(null);
-  }, []);
-  const [loading, setLoading] = useState(false);
+    localStorage.clear()
+    setCurrentUser(null)
+  }, [])
+  const [loading, setLoading] = useState(false)
   const handleLogin = (e) => {
-    e.preventDefault();
-    const data = { userName: userName.value, password: password.value };
-    setLoading(true);
+    e.preventDefault()
+    const data = { userName: userName.value, password: password.value }
+    setLoading(true)
     AuthServices.login(data)
       .then((res) => {
-        const user = res.data.user;
-        if (user.status === "inactive") {
-          setLoading(false);
-          message.warning("El usuario ingresado se encuentra deshabilitado.");
-          return;
+        const user = res.data.user
+        if (user.status === 'inactive') {
+          setLoading(false)
+          message.warning('El usuario ingresado se encuentra deshabilitado.')
+          return
         }
-        localStorage.setItem("userId", user.id);
-        setCurrentUser(user);
-        message.success("Logged Succesfully!");
+        localStorage.setItem('userId', user.id)
+        setCurrentUser(user)
+        message.success('Logged Succesfully!')
         if (user.isAdmin) {
-          router.push("/home/admin");
+          router.push('/home/admin')
         } else {
-          setSelectedBarber(user);
-          router.push("/home/barber");
+          setSelectedBarber(user)
+          router.push('/home/barber')
         }
-        setLoading(false);
+        setLoading(false)
       })
       .catch(() => {
-        message.error("Error at Login");
-        setLoading(false);
-      });
-  };
+        message.error('Error at Login')
+        setLoading(false)
+      })
+  }
 
-  const { isModalOpen,  toggleModal } = useModal();
+  const { isModalOpen, toggleModal } = useModal()
   return (
     <section className="  max-h-[100vh] h-[100vh] w-[100vw] flex flex-col overflow-hidden ">
       <nav className="border w-full p-2 bg-white flex justify-between items-center ">
@@ -66,7 +66,7 @@ export default function page() {
           login
           <ArrowLeft
             className={`w-[15px] transition-rotate duration-150 ${
-              isModalOpen ? "rotate-180" : "rotate-360"
+              isModalOpen ? 'rotate-180' : 'rotate-360'
             } `}
           />
         </Button>
@@ -77,7 +77,7 @@ export default function page() {
         </section>
         <div
           className={`absolute right-0 top-0   max-md:w-full  max-md:h-full h-[60%]  scroll- rounded-b-lg drop-shadow-2xl shadow-xl bg-blue opacity-90 grid place-items-center  transition-translate duration-300  ${
-            isModalOpen ? "translate-x-0 w-1/3" : "translate-x-[100%]  " 
+            isModalOpen ? 'translate-x-0 w-1/3' : 'translate-x-[100%]  '
           }`}
         >
           {isModalOpen && (
@@ -88,14 +88,14 @@ export default function page() {
               <div className="flex flex-col gap-4 text-md">
                 <Input
                   {...userName}
-                  type={"text"}
-                  title={"Username"}
+                  type={'text'}
+                  title={'Username'}
                   titleColor="text-white"
                 />
                 <Input
                   {...password}
-                  type={"password"}
-                  title={"Password"}
+                  type={'password'}
+                  title={'Password'}
                   titleColor="text-white"
                 />
               </div>
@@ -112,5 +112,5 @@ export default function page() {
 
       {loading && <FloatingLoader />}
     </section>
-  );
+  )
 }
