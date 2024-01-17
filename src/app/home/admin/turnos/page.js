@@ -25,10 +25,8 @@ export default function TunosListPage() {
       <section className="flex gap-4 p-2">
         {barbers.map((barber) => (
           <Button
-            variant={`${
-              barber.id === selectedBarber?.id ? 'primary' : 'disabled'
-            }`}
-            className="  p-2 rounded-md "
+           
+            className={` ${barber.id === selectedBarber?.id ?"bg-blue text-white":"text-blue"} p-2 rounded-md `}
             onClick={() => handleSelectBarber(barber.id)}
           >
             {barber.name}
