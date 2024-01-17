@@ -1,11 +1,11 @@
-"use client";
+'use client'
 
 export default function Button({
   body,
   variant,
   icon,
-  type = "button",
-  className = "",
+  type = 'button',
+  className = '',
   disabled = false,
   onClick,
   size,
@@ -14,26 +14,26 @@ export default function Button({
 }) {
   const btnStyle = {
     variant: {
-      primary: "bg-blue text-white   hover:bg-hoverBlue hover:text-blue ",
-      secondary: "bg-white border border-blue hover:bg-hoverBlue  text-blue ",
+      primary: 'bg-blue text-white   hover:bg-hoverBlue hover:text-blue ',
+      secondary: 'bg-white border border-blue hover:bg-hoverBlue  text-blue ',
       delete:
-        "bg-white  border border-red-500 hover:bg-error hover:text-white text-red-500 ",
-      text: "bg-white   text-blue  hover:bg-hoverBlue",
-      alert: "text-error    hover:bg-hoverRed",
-      dark: "text-dark-grey  bg-light-grey border  ",
-      disabled: "border-blue    text-grey ",
+        'bg-error text-white  border border-red-500 hover:bg-error hover:text-white text-red-500 ',
+      text: 'bg-white   text-blue  hover:bg-hoverBlue',
+      alert: 'text-error    hover:bg-hoverRed',
+      dark: 'text-dark-grey  bg-light-grey border  ',
+      disabled: 'border-blue    text-grey ',
     },
     size: {
-      big: "text-lg py-3 px-6",
-      small: "text-sm  py-2 px-6",
+      big: 'text-lg py-3 px-6',
+      small: 'text-sm  py-2 px-6',
     },
     disabled: {
-      primary: "bg-light-grey    text-grey ",
-      secondary: "bg-white   text-grey ",
-      text: "bg-white    text-grey   ",
-      alert: "bg-white   text-grey ",
+      primary: 'bg-light-grey    text-grey ',
+      secondary: 'bg-white   text-grey ',
+      text: 'bg-white    text-grey   ',
+      alert: 'bg-white   text-grey ',
     },
-  };
+  }
 
   return (
     <button
@@ -56,5 +56,5 @@ export default function Button({
         </>
       )}
     </button>
-  );
+  )
 }

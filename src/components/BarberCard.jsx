@@ -1,18 +1,18 @@
-"use client";
-import useModal from "@/hooks/useModal";
-import Aside from "./Aside";
-import BarberDetails from "./BarberDetails";
-import ActionsButtons from "./ActionsButtons";
-import { useStore } from "@/context/AdminContext";
-import BarberStatus from "@/commons/BarberStatus";
+'use client'
+import useModal from '@/hooks/useModal'
+import Aside from './Aside'
+import BarberDetails from './BarberDetails'
+import ActionsButtons from './ActionsButtons'
+import { useStore } from '@/context/AdminContext'
+import BarberStatus from '@/commons/BarberStatus'
 
 export default function BarberCard({ barber }) {
-  const { closeModal, openModal, isModalOpen } = useModal();
-  const { setSelectedBarber } = useStore();
+  const { closeModal, openModal, isModalOpen } = useModal()
+  const { setSelectedBarber } = useStore()
   const handleSelectBarber = () => {
-    setSelectedBarber(barber);
-    openModal();
-  };
+    setSelectedBarber(barber)
+    openModal()
+  }
   return (
     <div>
       <article
@@ -22,7 +22,7 @@ export default function BarberCard({ barber }) {
           <BarberStatus status={barber.status} />
           <h2
             className={`${
-              barber.status === "active" ? "text-black font-bold" : "text-grey "
+              barber.status === 'active' ? 'text-black font-bold' : 'text-grey '
             } `}
           >
             {barber.name} {barber.lastName}
@@ -48,5 +48,5 @@ export default function BarberCard({ barber }) {
         </Aside>
       ) : null}
     </div>
-  );
+  )
 }

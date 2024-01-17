@@ -1,24 +1,24 @@
-"use client";
-import Button from "@/commons/Button";
-import ChildrenLayout from "@/commons/ChildrenLayout";
-import AppointmentsList from "@/components/AppointmentsList";
-import { useStore } from "@/context/AdminContext";
-import { BarberServices } from "@/services/barber.services";
-import React, { useEffect } from "react";
+'use client'
+import Button from '@/commons/Button'
+import ChildrenLayout from '@/commons/ChildrenLayout'
+import AppointmentsList from '@/components/AppointmentsList'
+import { useStore } from '@/context/AdminContext'
+import { BarberServices } from '@/services/barber.services'
+import React, { useEffect } from 'react'
 
 export default function TunosListPage() {
-  const { barbers, selectedBarber, setSelectedBarber } = useStore();
+  const { barbers, selectedBarber, setSelectedBarber } = useStore()
 
   useEffect(() => {
     if (!selectedBarber || !selectedBarber.id) {
-      setSelectedBarber(barbers[0]);
+      setSelectedBarber(barbers[0])
     }
-  }, []);
+  }, [])
   const handleSelectBarber = (barberId) => {
     BarberServices.getBarber(barberId).then((res) => {
-      setSelectedBarber(res.data);
-    });
-  };
+      setSelectedBarber(res.data)
+    })
+  }
 
   return (
     <ChildrenLayout className="flex flex-col">
@@ -26,7 +26,7 @@ export default function TunosListPage() {
         {barbers.map((barber) => (
           <Button
             variant={`${
-              barber.id === selectedBarber?.id ? "primary" : "disabled"
+              barber.id === selectedBarber?.id ? 'primary' : 'disabled'
             }`}
             className="  p-2 rounded-md "
             onClick={() => handleSelectBarber(barber.id)}
@@ -37,5 +37,5 @@ export default function TunosListPage() {
       </section>
       {selectedBarber && <AppointmentsList />}
     </ChildrenLayout>
-  );
+  )
 }

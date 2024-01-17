@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 export default function Loader() {
   return (
@@ -22,5 +22,5 @@ export default function Loader() {
         </svg>
       </div>
     </div>
-  );
+  )
 }

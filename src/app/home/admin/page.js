@@ -1,20 +1,20 @@
-"use client";
-import Button from "@/commons/Button";
-import ChildrenLayout from "@/commons/ChildrenLayout";
-import { AddIcon, GridLayoutIcon, TableDisplayIcon } from "@/commons/Icons";
-import TitleView from "@/commons/TitleView";
-import Aside from "@/components/Aside";
-import GridTeam from "@/components/GridTeam";
-import Loader from "@/components/Loader";
-import NewBarberForm from "@/components/NewBarberForm";
-import TableTeam from "@/components/TableTeam";
-import { useStore } from "@/context/AdminContext";
-import useModal from "@/hooks/useModal";
-import React, { useState } from "react";
+'use client'
+import Button from '@/commons/Button'
+import ChildrenLayout from '@/commons/ChildrenLayout'
+import { AddIcon, GridLayoutIcon, TableDisplayIcon } from '@/commons/Icons'
+import TitleView from '@/commons/TitleView'
+import Aside from '@/components/Aside'
+import GridTeam from '@/components/GridTeam'
+import Loader from '@/components/Loader'
+import NewBarberForm from '@/components/NewBarberForm'
+import TableTeam from '@/components/TableTeam'
+import { useStore } from '@/context/AdminContext'
+import useModal from '@/hooks/useModal'
+import React, { useState } from 'react'
 
 export default function AdminPage() {
-  const { barbers } = useStore();
-  const { openModal, isModalOpen, closeModal } = useModal();
+  const { barbers } = useStore()
+  const { openModal, isModalOpen, closeModal } = useModal()
 
   return (
     <ChildrenLayout className={`flex flex-col justify-around gap-4`}>
@@ -29,7 +29,7 @@ export default function AdminPage() {
       <div className="h-10 w-10 absolute bottom-[1.5rem] right-[1rem]   rounded-full ">
         <Button
           variant="primary"
-          className={" rounded-full p-1"}
+          className={' rounded-full p-1'}
           onClick={openModal}
         >
           <AddIcon />
@@ -42,5 +42,5 @@ export default function AdminPage() {
         </Aside>
       )}
     </ChildrenLayout>
-  );
+  )
 }

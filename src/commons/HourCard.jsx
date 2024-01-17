@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 export default function HourCard({
   hour,
@@ -14,27 +14,27 @@ export default function HourCard({
       <div
         className={`w-3 h-3 rounded-full ${
           hour.avaliable && !isDeleted
-            ? "bg-green"
+            ? 'bg-green'
             : isNew
-            ? "bg-orange-300"
-            : isDeleted
-            ? "bg-error"
-            : "bg-disabled"
+              ? 'bg-orange-300'
+              : isDeleted
+                ? 'bg-error'
+                : 'bg-disabled'
         }`}
       ></div>
       <p
         className={`${
           hour.avaliable && !isDeleted
-            ? ""
+            ? ''
             : isNew
-            ? "text-orange-300"
-            : isDeleted
-            ? "text-error"
-            : "text-disabled"
+              ? 'text-orange-300'
+              : isDeleted
+                ? 'text-error'
+                : 'text-disabled'
         }`}
       >
         {hour.value}
       </p>
     </div>
-  );
+  )
 }
