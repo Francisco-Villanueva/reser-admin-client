@@ -1,18 +1,26 @@
 import AppointmentCard from '@/commons/AppointmentCard'
 import Button from '@/commons/Button'
 import { ArrowLeft } from '@/commons/Icons'
-import Ticket from '@/commons/Ticket'
 import useDate from '@/hooks/useDate'
 import useModal from '@/hooks/useModal'
+import { isToday } from 'date-fns'
 import React from 'react'
 
 export default function Appoitments({ appointment }) {
   const { date, appointments } = appointment
   const { formatToYMD } = useDate()
   const dayModal = useModal()
+  const fechaActual = new Date()
+  const fechaProporcionada = new Date(date + 'T00:00:00')
+  const isToday =
+    fechaActual.getDate() === fechaProporcionada.getDate() &&
+    (fechaActual.getMonth() === fechaProporcionada.getMonth()) ===
+      (fechaActual.getFullYear() === fechaProporcionada.getFullYear())
   return (
-    <div className="text-black flex flex-col gap-2">
-      <section className="flex justify-between items-center">
+    <div className={` text-black flex flex-col gap-2  `}>
+      <section
+        className={`${isToday ? 'text-white bg-blue' : ''} flex justify-between items-center p-1 rounded-md`}
+      >
         <div>
           <strong className="text-lg ">{formatToYMD(date)}</strong>
         </div>
