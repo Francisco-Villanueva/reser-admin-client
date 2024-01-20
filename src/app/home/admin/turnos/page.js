@@ -22,7 +22,7 @@ export default function TunosListPage() {
 
   return (
     <ChildrenLayout className="flex flex-col">
-      <section className="flex gap-4 p-2">
+      <section className="flex gap-4 ">
         {barbers.map((barber) => (
           <Button
            
