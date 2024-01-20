@@ -12,6 +12,7 @@ export default function layout({ children }) {
     useStore()
   const router = useRouter()
   useEffect(() => {
+    console.log('ENTRO EN LAYOUT USEEFECT')
     const barberId = localStorage.getItem('userId')
     if (!barberId) {
       return router.push('/login')
@@ -23,6 +24,7 @@ export default function layout({ children }) {
         ApiServices.getAllBarbers().then((res) => setBarbers(res.data))
         router.push('/home/admin')
       } else {
+        console.log({user})
         setSelectedBarber(user)
         router.push('/home/barber')
       }
