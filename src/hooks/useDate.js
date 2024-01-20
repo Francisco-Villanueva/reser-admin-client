@@ -81,6 +81,75 @@ export default function useDate() {
 
     return `${año}-${mes}-${día}`
   }
+  function formatDayOfMonth(fechaStr) {
+    let fecha = new Date(fechaStr + 'T00:00:00')
+    try {
+      const dias = [
+        'Dom',
+        'Lun',
+        'Mar',
+        'Mie',
+        'Jue',
+        'Vie',
+        'Sab',
+      ]
+      const meses = [
+        'Ene',
+        'Feb',
+        'Mar',
+        'Abr',
+        'May',
+        'Jun',
+        'Jul',
+        'Ago',
+        'Sept',
+        'Oct',
+        'Nov',
+        'Dic',
+      ]
+  
+      const mes = fecha.getMonth()
+      const dia = fecha.getDay()
+      const numero = fecha.getDate()
+  
+      // const res = `${dias[dia]}, ${numero}`
+      const res = {day: dias[dia], number: numero }
+  
+      return res
+    } catch (error) {
+      console.log(error)
+      return 'Fecha no válida'
+    }
+  }
 
-  return { currentDay, dateFormat_YMD, weeksDays, formatToYMD }
+  function getMonth(fechaStr){
+    let fecha = new Date(fechaStr + 'T00:00:00')
+    try {
+      const meses = [
+        'Enero',
+        'Febrero',
+        'Marzo',
+        'Abril',
+        'Mayo',
+        'Junio',
+        'Julio',
+        'Agosto',
+        'Septiembre',
+        'Octubre',
+        'Noviembre',
+        'Diciembre',
+      ]
+  
+      const mes = fecha.getMonth()
+  
+      const res = meses[mes]
+  
+      return res
+    } catch (error) {
+      console.log(error)
+      return 'Fecha no válida'
+    }
+  }
+  return { currentDay, dateFormat_YMD, weeksDays, formatToYMD, formatDayOfMonth, getMonth }
 }
+
