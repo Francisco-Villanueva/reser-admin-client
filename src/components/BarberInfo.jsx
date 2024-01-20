@@ -14,6 +14,7 @@ export default function BarberInfo({ closeModal }) {
   const lastName = useInput(selectedBarber.lastName, null)
   const userName = useInput(selectedBarber.userName, 'required')
   const email = useInput(selectedBarber.email, 'email')
+  const password = useInput('', 'password')
   const [newStatus, setNewStatus] = useState(selectedBarber.status)
   const [loading, setLoading] = useState(false)
 
@@ -24,10 +25,12 @@ export default function BarberInfo({ closeModal }) {
       const nameChange = selectedBarber.name !== name.value
       const lastNameChange = selectedBarber.lastName !== lastName.value
       const userNameChange = selectedBarber.userName !== userName.value
+      const passwordChange = password.value !== ''
       const statutusChange = selectedBarber.status !== newStatus
 
       return (
         emailChange ||
+        passwordChange ||
         nameChange ||
         lastNameChange ||
         userNameChange ||
@@ -36,7 +39,14 @@ export default function BarberInfo({ closeModal }) {
     }
 
     setDisableButton(isChange)
-  }, [name.value, email.value, lastName.value, userName.value, newStatus])
+  }, [
+    name.value,
+    email.value,
+    lastName.value,
+    userName.value,
+    password.value,
+    newStatus,
+  ])
   const handleSubmit = (e) => {
     e.preventDefault()
     setLoading(true)
@@ -46,20 +56,20 @@ export default function BarberInfo({ closeModal }) {
       lastName: lastName.value,
       email: email.value,
       userName: userName.value,
+      password: password.value,
       status: newStatus,
     })
       .then(() => {
         ApiServices.getAllBarbers().then((res) => {
           setBarbers(res.data)
-          setLoading(false)
           message.success('Cambios realizados')
           closeModal()
         })
       })
       .catch(() => {
         message.error('Error actulizando datos del peluquero')
-        setLoading(false)
       })
+      .finally(() => setLoading(false))
   }
 
   const handleBarberStatus = () => {
@@ -69,8 +79,9 @@ export default function BarberInfo({ closeModal }) {
       setNewStatus('active')
     }
   }
+
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-2">
       <div className="flex flex-col gap-2 w-full">
         <div className="flex gap-2">
           <Input
@@ -95,6 +106,7 @@ export default function BarberInfo({ closeModal }) {
             title={'Email'}
             {...email}
           />
+          {/* <Input type={'password'} title={'Password'} {...password} /> */}
         </div>
 
         <Button
