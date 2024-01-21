@@ -19,9 +19,7 @@ export default function Calendar({ handleDate, selectedDay }) {
   for (let i = calendarLimits; i < calendarLimits + 7; i++) {
     const date = new Date(today)
     date.setDate(today.getDate() + i)
-    if (!(date.getDay() === 0 || date.getDay() === 1)) {
-      futureDates.push(date.toISOString().split('T')[0])
-    }
+    futureDates.push(date.toISOString().split('T')[0])
   }
   futureDates.forEach((date) => {
     organizedAppointments[date] = { date, appointments: [] }
