@@ -1,42 +1,15 @@
 import React from 'react'
-import {
-  ArrowLeft,
-  ClockIcon,
-  MailIcon,
-  PhoneIcon,
-  TableDisplayIcon,
-  TrashIcon,
-} from './Icons'
-import Ticket from './Ticket'
+import { ArrowLeft, MailIcon, PhoneIcon, TrashIcon } from './Icons'
 import Button from './Button'
-import { message } from 'antd'
-import { AppointmentServices, AuthServices } from '@/services'
 import { useStore } from '@/context/AdminContext'
 import useModal from '@/hooks/useModal'
-import DeleteLayout from './DeleteLayout'
-import TitleView from './TitleView'
-import useDate from '@/hooks/useDate'
+import DeleteAppointment from '@/components/DeleteAppointment'
 
-export default function AppointmentCard({ appointment, date }) {
-  const { name, email, phone, hour, id } = appointment
-
-  const { currentUser, setCurrentUser, setSelectedBarber, selectedBarber } =
-    useStore()
+export default function AppointmentCard({ appointment }) {
+  const { name, email, phone, hour, id, date } = appointment
+  const { currentUser } = useStore()
   const { openModal, isModalOpen, closeModal } = useModal()
   const inforModal = useModal()
-  const handleDeleteAppointment = () => {
-    AppointmentServices.delete(id).then(() => {
-      AuthServices.getBarber(
-        currentUser.isAdmin ? selectedBarber.id : currentUser.id,
-      ).then((res) => {
-        currentUser.isAdmin
-          ? setSelectedBarber(res.data)
-          : setCurrentUser(res.data)
-        message.info(`Turno eliminado`)
-        closeModal()
-      })
-    })
-  }
 
   return (
     <div className="flex-col items-start justify-between  rounded-md p-1  lg:items-center   gap-8  max-md:gap-2  border  ">
@@ -77,28 +50,10 @@ export default function AppointmentCard({ appointment, date }) {
         </div>
       )}
       {isModalOpen && (
-        <DeleteLayout
-          closeModal={closeModal}
-          handleDelete={handleDeleteAppointment}
-        >
-          <div className=" h-full w-[90%] flex flex-col justify-center">
-            <TitleView>Eliminar Turno</TitleView>
-            <div className="h-full  flex flex-col gap-4 justify-center items-center">
-              <h2 className="text-black font-semibold text-xl">{name}</h2>
-
-              <div className="flex flex-col w-2/3 gap-1 ">
-                <span className="grid grid-cols-2 ">
-                  <strong>Día</strong>
-                  <Ticket variant="secondary">{date}</Ticket>
-                </span>
-                <span className="grid grid-cols-2 ">
-                  <strong>Hora</strong>
-                  <Ticket variant="secondary">{hour} hs</Ticket>
-                </span>
-              </div>
-            </div>
-          </div>
-        </DeleteLayout>
+        <DeleteAppointment
+          appointmentId={id}
+          modal={{ closeModal, openModal, isModalOpen }}
+        />
       )}
     </div>
   )
