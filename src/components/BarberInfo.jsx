@@ -51,14 +51,24 @@ export default function BarberInfo({ closeModal }) {
     e.preventDefault()
     setLoading(true)
 
-    ApiServices.updateBarberData(selectedBarber.id, {
-      name: name.value,
-      lastName: lastName.value,
-      email: email.value,
-      userName: userName.value,
-      password: password.value,
-      status: newStatus,
-    })
+    const dataToUpdate =
+      password.value !== ''
+        ? {
+            name: name.value,
+            lastName: lastName.value,
+            email: email.value,
+            userName: userName.value,
+            password: password.value,
+            status: newStatus,
+          }
+        : {
+            name: name.value,
+            lastName: lastName.value,
+            email: email.value,
+            userName: userName.value,
+            status: newStatus,
+          }
+    ApiServices.updateBarberData(selectedBarber.id, dataToUpdate)
       .then(() => {
         ApiServices.getAllBarbers().then((res) => {
           setBarbers(res.data)
@@ -106,7 +116,7 @@ export default function BarberInfo({ closeModal }) {
             title={'Email'}
             {...email}
           />
-          {/* <Input type={'password'} title={'Password'} {...password} /> */}
+          <Input type={'password'} title={'Password'} {...password} />
         </div>
 
         <Button
