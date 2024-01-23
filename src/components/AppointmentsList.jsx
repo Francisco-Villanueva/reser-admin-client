@@ -25,7 +25,9 @@ export default function AppointmentsList() {
       }
     >
       <TitleView>Próximos Turnos </TitleView>
-      <Calendar handleDate={(date) => setDate(date)} selectedDay={date} />
+      {appointments && (
+        <Calendar handleDate={(date) => setDate(date)} selectedDay={date} />
+      )}
       {appointments ? (
         <TableTeamRow appointments={futureAppointments} date={date} />
       ) : (
