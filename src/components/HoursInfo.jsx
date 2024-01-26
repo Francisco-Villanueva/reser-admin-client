@@ -8,6 +8,7 @@ import { ApiServices } from '@/services'
 import { useStore } from '@/context/AdminContext'
 import FloatingLoader from '@/commons/FloatingLoader'
 import LayoutAsideItem from '@/commons/LayoutAsideItem'
+import { message } from 'antd'
 
 export default function HoursInfo({ closeModal }) {
   const { setHoursToShow, selectedBarber } = useStore()
@@ -19,16 +20,12 @@ export default function HoursInfo({ closeModal }) {
       setHoursToShow(res.data)
     })
   }, [dateIndex])
+
   const handleDate = (dateI) => {
     setDateIndex(dateI)
   }
   const handleChangeHours = (hoursToUpdate) => {
     setLoading(true)
-    useEffect(() => {
-      ApiServices.getHoursByDay(selectedBarber.id, dateIndex).then((res) => {
-        setHoursToShow(res.data)
-      })
-    }, [dateIndex])
     ApiServices.updateBarberWorkHours(
       selectedBarber.id,
       dateIndex,
