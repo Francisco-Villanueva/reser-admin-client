@@ -29,7 +29,7 @@ export default function AppointmentsList() {
         <Calendar handleDate={(date) => setDate(date)} selectedDay={date} />
       )}
       {appointments ? (
-        <TableTeamRow appointments={futureAppointments} date={date} />
+        <TableTeamRow appointments={appointments} date={date} />
       ) : (
         <Loader />
       )}
