@@ -5,7 +5,11 @@ import { useStore } from '@/context/AdminContext'
 import useDate from '@/hooks/useDate'
 import React, { useState } from 'react'
 
-export default function Calendar({ handleDate, selectedDay }) {
+export default function Calendar({
+  handleDate,
+  selectedDay,
+  canceled = false,
+}) {
   const { formatDayOfMonth, getMonth } = useDate()
   const {
     mainHours,
@@ -37,16 +41,19 @@ export default function Calendar({ handleDate, selectedDay }) {
   })
   return (
     <section className="flex flex-col items-center gap-2">
-      <span className=" text-sm font-semibold text-white p-2 bg-black rounded-md w-[80%]">
+      <span
+        className={` text-sm font-semibold text-white p-2 ${canceled ? 'bg-error' : 'bg-black'}  rounded-md w-[50%] max-md:w-full`}
+      >
         {getMonth(selectedDay)}
       </span>
-      <div className="flex gap-4 max-sm:gap-1 justify-center items-center   ">
+      <div className="flex gap-4 max-sm:gap-1 justify-around items-center  max-md:w-full ">
         <Button onClick={() => setCalenadarLimits((s) => s - 1)}>
           <ArrowLeft className={'w-[14px]'} />
         </Button>
 
         {futureDates.map((day) => (
           <DateCard
+            canceled={canceled}
             handleDate={() => handleDate(day)}
             date={formatDayOfMonth(day)}
             isSelected={day === selectedDay}

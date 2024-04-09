@@ -5,7 +5,7 @@ import { useStore } from '@/context/AdminContext'
 import useModal from '@/hooks/useModal'
 import DeleteAppointment from '@/components/DeleteAppointment'
 
-export default function AppointmentCard({ appointment }) {
+export default function AppointmentCard({ appointment, canceled = false }) {
   const { name, email, phone, hour, id, date } = appointment
   const { currentUser } = useStore()
   const { openModal, isModalOpen, closeModal } = useModal()
@@ -28,7 +28,7 @@ export default function AppointmentCard({ appointment }) {
             />
           </Button>
 
-          {currentUser.isAdmin && (
+          {currentUser.isAdmin && !canceled && (
             <Button
               onClick={openModal}
               className="   bg-error hover:bg-red-700 text-white   rounded-md p-1 z-40"
