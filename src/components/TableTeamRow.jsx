@@ -1,7 +1,7 @@
 import React from 'react'
 import Appoitments from './Appoitments'
 import { useStore } from '@/context/AdminContext'
-export default function TableTeamRow({ appointments, date }) {
+export default function TableTeamRow({ appointments, date, canceled = false }) {
   const { mainHours } = useStore()
 
   const organizedAppointments = {}
@@ -24,11 +24,13 @@ export default function TableTeamRow({ appointments, date }) {
 
   const resultArray = Object.values(organizedAppointments)
 
+  console.log({ resultArray })
+
   return (
-    <div className="flex flex-col gap-2    overflow-auto max-h-[90%]">
+    <div className="flex flex-col gap-2  overflow-auto max-h-[90%]">
       <div className="flex flex-col gap-2  ">
         {resultArray.map((appointment) => (
-          <Appoitments appointment={appointment} />
+          <Appoitments appointment={appointment} canceled={canceled} />
         ))}
       </div>
     </div>
