@@ -21,7 +21,7 @@ export default function TunosListPage() {
   }
 
   return (
-    <ChildrenLayout className="flex flex-col">
+    <ChildrenLayout className="flex flex-col gap-2">
       <section className="flex gap-4 ">
         {barbers.map((barber) => (
           <Button
@@ -33,6 +33,7 @@ export default function TunosListPage() {
           </Button>
         ))}
       </section>
+      <hr/>
       {selectedBarber && <AppointmentsList />}
     </ChildrenLayout>
   )

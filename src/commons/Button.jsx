@@ -17,9 +17,9 @@ export default function Button({
       primary: 'bg-blue text-white   hover:bg-hoverBlue hover:text-blue ',
       secondary: 'bg-white border border-blue hover:bg-hoverBlue  text-blue ',
       delete:
-        'bg-error text-white  border border-red-500 hover:bg-error hover:text-white text-red-500 ',
+        'bg-error text-white  border border-red-500 hover:bg-hoverRed  hover:text-error text-red-500 ',
       text: 'bg-white   text-blue  hover:bg-hoverBlue',
-      alert: 'text-error    hover:bg-hoverRed',
+      alert: 'text-error border  border-error  hover:bg-hoverRed',
       dark: 'text-dark-grey  bg-light-grey border  ',
       disabled: 'border-blue    text-grey ',
     },
