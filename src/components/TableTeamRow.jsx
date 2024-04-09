@@ -24,8 +24,6 @@ export default function TableTeamRow({ appointments, date, canceled = false }) {
 
   const resultArray = Object.values(organizedAppointments)
 
-  console.log({ resultArray })
-
   return (
     <div className="flex flex-col gap-2  overflow-auto max-h-[90%]">
       <div className="flex flex-col gap-2  ">

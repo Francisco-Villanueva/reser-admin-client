@@ -27,20 +27,20 @@ export default function AppointmentsList() {
       }
     >
       <section className="flex   items-center gap-2">
-        <h2 className="text-black font-semibold">¿Qué turnos deseas ver?</h2>
+        <h2 className="text-black font-semibold max-md:text-xs">
+          ¿Qué turnos deseas ver?
+        </h2>
         <div className="flex gap-2">
           <Button
             variant={view === 'appointments' ? 'primary' : 'disabled'}
-            size={'small'}
-            className="rounded-md hover:border hover:border-border transition-all duration-200"
+            className="p-1 px-2 text-xs rounded-md hover:border hover:border-border transition-all duration-200"
             onClick={() => setView('appointments')}
           >
             Próximos Turnos{' '}
           </Button>
           <Button
             variant={view === 'cancelled' ? 'delete' : 'disabled'}
-            size={'small'}
-            className="rounded-md hover:border hover:border-border transition-all duration-200"
+            className="p-1 px-2 text-xs rounded-md hover:border hover:border-border transition-all duration-200 "
             onClick={() => setView('cancelled')}
           >
             {' '}

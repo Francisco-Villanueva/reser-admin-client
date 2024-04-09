@@ -39,7 +39,7 @@ export default function Button({
     <button
       onClick={onClick}
       type={type}
-      className={`text-center flex items-center justify-center  gap-2 font-bold leading-5 capitalize  transition-all duration-150 ease-inl ${
+      className={`text-center border border-transparent flex items-center justify-center  gap-2 font-bold leading-5 capitalize  transition-all duration-150 ease-inl ${
         disabled
           ? `${btnStyle.disabled[variant]} ${btnStyle.size[size]}`
           : `${btnStyle.variant[variant]} ${btnStyle.size[size]}`
