@@ -32,7 +32,9 @@ export default function page() {
           </h2>
         </section>
 
-        <section className=" w-full h-2/3 lg:w-1/2 lg:h-full flex items-center  justify-center bg-dark-grey/30 ">
+        <section className=" w-full h-2/3 lg:w-1/2 lg:h-full flex items-center  justify-center lg:bg-dark-grey/0 relative ">
+          <div className="bg-dark-grey/30 h-1/6 w-1/6 max-lg:h-24 max-lg:w-24  rounded-bl-full  top-0 right-0 absolute "></div>
+          <div className="bg-dark-grey/30 h-1/6 w-1/6 max-lg:h-24 max-lg:w-24  rounded-tr-full  bottom-0 left-0 absolute "></div>
           <LoginForm />
         </section>
       </div>
