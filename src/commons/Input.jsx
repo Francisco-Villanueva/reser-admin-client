@@ -22,7 +22,7 @@ export default function Input({
   const inputType = showPassword ? 'text' : type
 
   return (
-    <div className={`  w-full   font-montserrat   ${className}`}>
+    <div className={`  w-full      ${className}`}>
       <label className={`block ${titleColor}  ml-2 `}>{title}</label>
       <div className=" relative">
         <input
@@ -33,9 +33,9 @@ export default function Input({
           onFocus={onFocus}
           type={inputType}
           placeholder={placeholder}
-          className={`w-full  p-2 text-lg max-md:text-md rounded-md border border-border ${
+          className={`w-full  p-2 text-md max-md:text-md rounded-md border border-border ${
             error ? 'border-error' : ''
-          } text-black  font-montserrat focus:outline-none`}
+          } text-black   focus:outline-none`}
         />
 
         {type === 'password' && (

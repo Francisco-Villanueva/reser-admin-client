@@ -26,7 +26,7 @@ module.exports = {
         border: '#D9DBDE',
         grey: '#AEB1B7',
         'dark-grey': '#5D6470',
-        black: '#15294A',
+        black: '#818181',
         error: '#d9454b',
         success: '#15CC8A',
         hoverRed: '#fa104814',
