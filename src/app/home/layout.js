@@ -12,7 +12,6 @@ export default function layout({ children }) {
     useStore()
   const router = useRouter()
   useEffect(() => {
-    console.log('ENTRO EN LAYOUT USEEFECT')
     const barberId = localStorage.getItem('userId')
     if (!barberId) {
       return router.push('/login')
@@ -34,13 +33,13 @@ export default function layout({ children }) {
     <div className="flex  max-sm:flex-col-reverse max-sm:gap-2">
       {currentUser?.isAdmin && <Sidebar />}
 
-      <div className="w-full   max-h-[100%] px-6  ">
+      <div className="w-full flex flex-col  max-h-[100%] px-6   ">
         <Navbar
           className="  w-full h-[10vh] max-sm:h-[6vh] "
           title={'Administracion'}
         />
 
-        <div className="max-h-[85vh] h-[85vh]  max-sm:h-[83vh]">{children}</div>
+        <div className="flex-grow  max-sm:h-[83vh] ">{children}</div>
       </div>
     </div>
   )
