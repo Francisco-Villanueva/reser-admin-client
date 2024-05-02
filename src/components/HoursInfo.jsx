@@ -46,23 +46,14 @@ export default function HoursInfo({ closeModal }) {
   }
   return (
     <div className="flex flex-col   ">
-      <LayoutAsideItem>
-        <h2 className="text-black">Horarios de trabajo</h2>
-        <Button onClick={hoursInfo.toggleModal}>
-          <ArrowRight
-            className={`w-[12px] transition-all duration-200 ${!hoursInfo.isModalOpen ? 'rotate-[90deg]' : 'rotate-[-90deg]'}`}
-          />{' '}
-        </Button>
-      </LayoutAsideItem>
-      {hoursInfo.isModalOpen && (
-        <section className="flex flex-col gap-4 p-2">
-          <SelectDay handleDate={handleDate} dateIndex={dateIndex} />
-          <Selecthours
-            dateIndex={dateIndex}
-            handleChangeHours={handleChangeHours}
-          />
-        </section>
-      )}
+      <section className="flex flex-col gap-4 p-2">
+        <SelectDay handleDate={handleDate} dateIndex={dateIndex} />
+        <Selecthours
+          dateIndex={dateIndex}
+          handleChangeHours={handleChangeHours}
+        />
+      </section>
+
       {loading && <FloatingLoader />}
     </div>
   )

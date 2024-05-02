@@ -49,7 +49,7 @@ export default function Sidebar() {
         <Button
           icon={isSidebarSmall ? <ArrowRight /> : <ArrowLeft />}
           onClick={toggleSidebarSize}
-          className={`w-10 h-10 bg-white border border-grey hover:bg-gray-300 rounded-full relative bottom-5 ${
+          className={`w-10 h-10 bg-background border border-primary/30  rounded-full relative bottom-5 ${
             isSidebarSmall ? 'left-[70%]' : 'left-[90%]'
           }`}
         />

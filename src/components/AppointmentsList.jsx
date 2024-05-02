@@ -5,7 +5,7 @@ import Loader from './Loader'
 import Calendar from './Calendar'
 import { AppointmentServices } from '@/services'
 import Button from '@/commons/Button'
-
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 export default function AppointmentsList() {
   const {
     selectedBarber: { appointments, id },
@@ -31,21 +31,23 @@ export default function AppointmentsList() {
           ¿Qué turnos deseas ver?
         </h2>
         <div className="flex gap-2">
-          <Button
-            variant={view === 'appointments' ? 'primary' : 'disabled'}
-            className="p-1 px-2 text-xs rounded-md hover:border hover:border-border transition-all duration-200"
-            onClick={() => setView('appointments')}
-          >
-            Próximos Turnos{' '}
-          </Button>
-          <Button
-            variant={view === 'cancelled' ? 'delete' : 'disabled'}
-            className="p-1 px-2 text-xs rounded-md hover:border hover:border-border transition-all duration-200 "
-            onClick={() => setView('cancelled')}
-          >
-            {' '}
-            Tunos Cancelados
-          </Button>
+          <Tabs defaultValue="appointments" className="w-[400px]">
+            <TabsList>
+              <TabsTrigger
+                defaultChecked
+                value="appointments"
+                onClick={() => setView('appointments')}
+              >
+                Próximos Turnos
+              </TabsTrigger>
+              <TabsTrigger
+                value="cancelled"
+                onClick={() => setView('cancelled')}
+              >
+                Tunos Cancelados
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
         </div>
       </section>
       {view === 'appointments' && (

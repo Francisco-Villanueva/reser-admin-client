@@ -1,10 +1,10 @@
 'use client'
-import Button from '@/commons/Button'
 import ChildrenLayout from '@/commons/ChildrenLayout'
 import AppointmentsList from '@/components/AppointmentsList'
 import { useStore } from '@/context/AdminContext'
 import { BarberServices } from '@/services/barber.services'
 import React, { useEffect } from 'react'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export default function TunosListPage() {
   const { barbers, selectedBarber, setSelectedBarber } = useStore()
@@ -21,18 +21,24 @@ export default function TunosListPage() {
   }
 
   return (
-    <ChildrenLayout className="flex flex-col gap-2">
-      <section className="flex gap-4 ">
-        {barbers.map((barber) => (
-          <Button
-           
-            className={` ${barber.id === selectedBarber?.id ?"bg-blue text-white":"text-blue"} p-2 rounded-md `}
-            onClick={() => handleSelectBarber(barber.id)}
-          >
-            {barber.name}
-          </Button>
-        ))}
-      </section>
+      <ChildrenLayout className="flex flex-col gap-2">
+      <Tabs defaultValue={selectedBarber?.id || barbers[0].id} className="w-[400px]">
+      <TabsList>
+      {barbers.map((barber) => (
+            <TabsTrigger
+              value={barber.id}
+            
+              onClick={() => handleSelectBarber(barber.id)}
+            >
+                {barber.name}
+        
+            </TabsTrigger>
+          ))}
+    
+      </TabsList>
+      
+    </Tabs>
+      
       <hr/>
       {selectedBarber && <AppointmentsList />}
     </ChildrenLayout>

@@ -1,4 +1,5 @@
 'use client'
+import Aside from '@/components/Aside'
 import Navbar from '@/components/Navbar'
 import Sidebar from '@/components/Sidebar'
 import { useStore } from '@/context/AdminContext'
@@ -12,7 +13,6 @@ export default function layout({ children }) {
     useStore()
   const router = useRouter()
   useEffect(() => {
-    console.log('ENTRO EN LAYOUT USEEFECT')
     const barberId = localStorage.getItem('userId')
     if (!barberId) {
       return router.push('/login')
@@ -28,6 +28,8 @@ export default function layout({ children }) {
         setSelectedBarber(user)
         router.push('/home/barber')
       }
+
+      
     })
   }, [])
   return (
@@ -40,7 +42,8 @@ export default function layout({ children }) {
           title={'Administracion'}
         />
 
-        <div className="max-h-[85vh] h-[85vh]  max-sm:h-[83vh]">{children}</div>
+        <div className="max-h- [85vh] h-[85vh]  max-sm:h-[83vh]">{children}</div>
+        <Aside/>
       </div>
     </div>
   )

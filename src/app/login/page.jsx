@@ -5,7 +5,7 @@ import { useStore } from '@/context/AdminContext'
 import Image from 'next/image'
 import React, { useEffect } from 'react'
 
-export default function page() {
+export default function LoginPage() {
   const { setCurrentUser } = useStore()
 
   useEffect(() => {
@@ -27,12 +27,13 @@ export default function page() {
             height={50}
             alt="Reset Hair Studio"
           />
-          <h2 className="uppercase text-xl text-dark-grey max-md:text-center max-md:text-sm  max-lg:text-lg font-extralight z-10">
-            Welcome to <strong> reset Software</strong> Backoffice
+          <h2 className="uppercase  text-primary/80 z-10">
+            Welcome to <span className="font-bold"> reset Software</span>{' '}
+            Backoffice
           </h2>
         </section>
 
-        <section className=" w-full h-2/3 lg:w-1/2 lg:h-full flex items-center  justify-center lg:bg-dark-grey/0 relative ">
+        <section className=" w-full h-2/3 lg:w-1/2 lg:h-full flex items-center  justify-center lg:bg-dark-grey/0 relative  ">
           <div className="bg-dark-grey/30 h-1/6 w-1/6 max-lg:h-24 max-lg:w-24  rounded-bl-full  top-0 right-0 absolute "></div>
           <div className="bg-dark-grey/30 h-1/6 w-1/6 max-lg:h-24 max-lg:w-24  rounded-tr-full  bottom-0 left-0 absolute "></div>
           <LoginForm />
