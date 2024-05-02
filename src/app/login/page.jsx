@@ -28,7 +28,7 @@ export default function page() {
             alt="Reset Hair Studio"
           />
           <h2 className="uppercase text-xl text-dark-grey max-md:text-center max-md:text-sm  max-lg:text-lg font-extralight z-10">
-            Bienvenidos a <strong> reset Software</strong> Backoffice
+            Welcome to <strong> reset Software</strong> Backoffice
           </h2>
         </section>
 
