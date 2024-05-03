@@ -9,9 +9,11 @@ import { useStore } from '@/context/AdminContext'
 import FloatingLoader from '@/commons/FloatingLoader'
 import LayoutAsideItem from '@/commons/LayoutAsideItem'
 import { message } from 'antd'
+import { useAsideStore } from '@/context/AsideContext'
 
-export default function HoursInfo({ closeModal }) {
+export default function HoursInfo() {
   const { setHoursToShow, selectedBarber } = useStore()
+  const { setAside } = useAsideStore()
   const [dateIndex, setDateIndex] = useState(new Date().getDay())
   const [loading, setLoading] = useState(false)
   const hoursInfo = useModal()
@@ -35,7 +37,7 @@ export default function HoursInfo({ closeModal }) {
         ApiServices.getHoursByDay(selectedBarber.id, dateIndex).then((res) => {
           setHoursToShow(res.data)
           setLoading(true)
-          closeModal()
+          setAside(null)
           message.success('Horarios actualizados!')
         })
       })
@@ -45,8 +47,8 @@ export default function HoursInfo({ closeModal }) {
       })
   }
   return (
-    <div className="flex flex-col   ">
-      <section className="flex flex-col gap-4 p-2">
+    <>
+      <section className="flex flex-col gap-4 p-2 w-full  ">
         <SelectDay handleDate={handleDate} dateIndex={dateIndex} />
         <Selecthours
           dateIndex={dateIndex}
@@ -55,6 +57,6 @@ export default function HoursInfo({ closeModal }) {
       </section>
 
       {loading && <FloatingLoader />}
-    </div>
+    </>
   )
 }

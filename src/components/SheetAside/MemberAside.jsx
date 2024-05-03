@@ -8,7 +8,7 @@ export default function MemberAside() {
   const { selectedBarber } = useStore()
   return (
     <aside className="flex flex-col gap-2 h-full">
-      <header className="flex  bg-secondary justify-between border rounded-md p-2 ">
+      <header className="flex   justify-between border border-border rounded-md p-2 ">
         <section className="flex flex-col">
           <div className="flex  gap-1">
             <p>{selectedBarber.name}</p>

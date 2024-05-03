@@ -2,8 +2,8 @@
 import { useStore } from '@/context/AdminContext'
 import HourCard from '../commons/HourCard'
 import { useEffect, useState } from 'react'
-import Button from '../commons/Button'
 import Loader from './Loader'
+import { Button } from './ui/button'
 
 export default function Selecthours({ handleChangeHours }) {
   const { hoursToShow } = useStore()
@@ -38,8 +38,8 @@ export default function Selecthours({ handleChangeHours }) {
   }
 
   return (
-    <section className="flex flex-col items-center  gap-4 p-4 border rounded-md">
-      <section className="flex gap-6 items-center justify-around text-sm  ">
+    <section className="flex flex-col items-center  gap-4  ">
+      <section className="flex gap-6 items-center justify-around text-sm p-2 ">
         {['Nuevo', 'Eliminar ', 'Actual'].map((type) => (
           <div className="flex items-center gap-1 max-sm:text-[10px]">
             <div
@@ -84,9 +84,9 @@ export default function Selecthours({ handleChangeHours }) {
         )}
       </div>
       <Button
-        variant="primary"
+        variant=""
         onClick={handleSubmit}
-        className="p-2 rounded-md w-full  "
+        className=" w-full  "
         disabled={
           newHours.length === hoursToShow.filter((e) => e.avaliable).length
         }

@@ -1,3 +1,4 @@
+import { Badge } from '@/components/ui/badge'
 import React from 'react'
 
 export default function BarberStatus({ status }) {
@@ -7,8 +8,8 @@ export default function BarberStatus({ status }) {
   }
 
   return (
-    <div
-      className={`  ${COLORS[status]} rounded-[3px] w-[5px] h-[1rem] `}
-    ></div>
+    <Badge className={`text-xs font-normal py-0 ${COLORS[status]} `}>
+      {status}
+    </Badge>
   )
 }

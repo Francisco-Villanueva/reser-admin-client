@@ -6,6 +6,7 @@ const initialState = {
   barbers: [],
   horarios: [],
   hoursToShow: [],
+  appointments: [],
   selectedBarber: { ...userModel },
   selectedDay: {},
   currentUser: { ...userModel },
@@ -22,10 +23,15 @@ export function AdminProvider({ children }) {
     barbers: [],
     horarios: [],
     hoursToShow: [],
+    appointments: [],
     selectedBarber: { ...userModel },
     selectedDay: {},
     currentUser: { ...userModel },
   })
+
+  const setAppointments = async (appointments) => {
+    setState((state) => ({ ...state, appointments }))
+  }
 
   const setCurrentUser = async (user) => {
     setState((state) => ({ ...state, currentUser: user }))
@@ -64,6 +70,7 @@ export function AdminProvider({ children }) {
         setHoursToShow,
         setSelectedBarber,
         setCurrentUser,
+        setAppointments,
       }}
     >
       {children}

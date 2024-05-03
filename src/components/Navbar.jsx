@@ -1,10 +1,14 @@
 import { NavbarDropDown } from './Dropdowns/NavbarDropDown'
-export default function Navbar({ title, className = '' }) {
+import { ThemeSwitcher } from './Theme/ThemeSwitcher'
+export default function Navbar() {
   return (
-    <nav className={`flex justify-between items-center ${className}`}>
-      <h1 className="font-semibold text-xl text-primary">{title || ''}</h1>
-
-      <NavbarDropDown />
+    <nav
+      className={`flex justify-end items-center  w-full h-[10vh] max-sm:h-[6vh] `}
+    >
+      <div className="flex items-center gap-2">
+        <ThemeSwitcher />
+        <NavbarDropDown />
+      </div>
     </nav>
   )
 }
