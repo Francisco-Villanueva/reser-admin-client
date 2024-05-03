@@ -10,10 +10,12 @@ import NewBarberForm from '@/components/NewBarberForm'
 import { useStore } from '@/context/AdminContext'
 import useModal from '@/hooks/useModal'
 import { AppointmentsTable } from '@/components/Tables'
+import { useAsideStore } from '@/context/AsideContext'
 
 
 export default function AdminPage() {
   const { barbers } = useStore()
+  const { setAside } = useAsideStore()
   const { openModal, isModalOpen, closeModal } = useModal()
 
   return (
@@ -39,7 +41,7 @@ export default function AdminPage() {
         <Button
           variant="primary"
           className={' rounded-full p-1'}
-          onClick={openModal}
+          onClick={()=>setAside('newBarber')}
         >
           <AddIcon />
         </Button>

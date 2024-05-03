@@ -22,7 +22,7 @@ export default function TunosListPage() {
 
   return (
       <ChildrenLayout className="flex flex-col gap-2">
-      <Tabs defaultValue={selectedBarber?.id || barbers[0].id} className="w-[400px]">
+      <Tabs defaultValue={selectedBarber?.id || barbers[0]?.id} className="w-[400px]">
       <TabsList>
       {barbers.map((barber) => (
             <TabsTrigger

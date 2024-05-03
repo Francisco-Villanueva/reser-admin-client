@@ -1,1 +1,1 @@
-export type AsideTypes = 'editMembers' | 'deleteMember'
+export type AsideTypes = 'editMembers' | 'deleteMember' | 'newBarber'

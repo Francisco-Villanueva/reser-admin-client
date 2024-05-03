@@ -3,8 +3,13 @@
 import BarberStatus from '@/commons/BarberStatus'
 import MemberDropDown from './Dropdowns/MemberDropDown'
 import Image from 'next/image'
+import { useTheme } from 'next-themes'
 
 export default function BarberCard({ barber }) {
+  const { theme } = useTheme()
+
+  const resetLogo =
+    theme === 'light' ? '/images/RESET_C_negro.png' : '/images/RESET_C.png'
   return (
     <div className=" flex flex-col  gap- items-center border border-border rounded-md  h-full">
       <header className="h-20  w-full relative flex justify-center items-center">
@@ -19,10 +24,10 @@ export default function BarberCard({ barber }) {
         <div className="h-1/2 bg w-full bottom-0  absolute"></div>
         <div className="h-5/6 aspect-square relative ">
           <Image
-            src="/barbers/laucha.jpg"
+            src={barber.img ? barber.img : resetLogo}
             objectFit="cover"
             fill
-            className=" rounded-full"
+            className=" rounded-full bg-secondary p-1"
           />
         </div>
       </header>

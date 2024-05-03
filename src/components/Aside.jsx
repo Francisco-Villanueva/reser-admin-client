@@ -5,7 +5,7 @@ export default function Aside() {
   const { asideType } = useAsideStore()
   return asideType ? (
     <Sheet open={asideType !== null}>
-      <SheetContent className="py-10">
+      <SheetContent className="p-8">
         <AsideContent type={asideType} />
       </SheetContent>
     </Sheet>

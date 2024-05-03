@@ -37,7 +37,6 @@ export default function HoursInfo() {
         ApiServices.getHoursByDay(selectedBarber.id, dateIndex).then((res) => {
           setHoursToShow(res.data)
           setLoading(true)
-          setAside(null)
           message.success('Horarios actualizados!')
         })
       })
@@ -48,7 +47,7 @@ export default function HoursInfo() {
   }
   return (
     <>
-      <section className="flex flex-col gap-4 p-2 w-full  ">
+      <section className="flex flex-col gap-4 p-2 w-full h-full   ">
         <SelectDay handleDate={handleDate} dateIndex={dateIndex} />
         <Selecthours
           dateIndex={dateIndex}

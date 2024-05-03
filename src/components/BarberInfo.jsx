@@ -8,7 +8,7 @@ import React, { useEffect, useState } from 'react'
 import { Tabs, TabsList, TabsTrigger } from './ui/tabs'
 import { Button } from './ui/button'
 
-export default function BarberInfo({ closeModal }) {
+export default function BarberInfo() {
   const { selectedBarber, setBarbers } = useStore()
   const name = useInput(selectedBarber.name, null)
   const lastName = useInput(selectedBarber.lastName, null)
@@ -73,7 +73,6 @@ export default function BarberInfo({ closeModal }) {
         ApiServices.getAllBarbers().then((res) => {
           setBarbers(res.data)
           message.success('Cambios realizados')
-          closeModal()
         })
       })
       .catch(() => {
@@ -91,7 +90,10 @@ export default function BarberInfo({ closeModal }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-2">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col justify-between  h-full p-2"
+    >
       <div className="flex flex-col gap-2 w-full">
         <div className="flex gap-2">
           <InputWithLabel
@@ -131,7 +133,7 @@ export default function BarberInfo({ closeModal }) {
         </Tabs>
       </div>
 
-      <Button type="submit" variant="default" disabled={!disableButton}>
+      <Button type="submit" variant="outline" disabled={!disableButton}>
         Actualizar
       </Button>
       {loading && <FloatingLoader />}

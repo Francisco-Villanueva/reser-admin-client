@@ -7,7 +7,7 @@ import { ApiServices, AuthServices } from '@/services'
 import { message } from 'antd'
 import React, { useState } from 'react'
 
-export default function NewBarberForm({ closeModal }) {
+export default function NewBarberForm() {
   const { setBarbers } = useStore()
   const [loading, setLoading] = useState(false)
 
@@ -34,7 +34,6 @@ export default function NewBarberForm({ closeModal }) {
         ApiServices.getAllBarbers().then((res) => {
           setBarbers(res.data)
           setLoading(false)
-          closeModal()
         })
       })
       .catch(() => {
