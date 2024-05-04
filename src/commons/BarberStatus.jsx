@@ -8,7 +8,9 @@ export default function BarberStatus({ status }) {
   }
 
   return (
-    <Badge className={`text-xs font-normal py-0 ${COLORS[status]} `}>
+    <Badge
+      className={`text-xs font-normal py-0 hover:${COLORS[status]} ${COLORS[status]} select-none `}
+    >
       {status}
     </Badge>
   )

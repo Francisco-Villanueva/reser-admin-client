@@ -4,25 +4,25 @@ import { Badge } from '../ui/badge'
 import BarberInfo from '../BarberInfo'
 import HoursInfo from '../HoursInfo'
 import { useState } from 'react'
+import BarberStatus from '@/commons/BarberStatus'
 
 export default function MemberAside() {
   const [info, setInfo] = useState('perfil')
   const { selectedBarber } = useStore()
   return (
     <aside className="flex flex-col gap-2 h-full">
-      <header className="flex   justify-between  border border-b-4 border-r-4 rounded-md p-2  ">
+      <header className="flex   justify-between  bg-secondary rounded-md p-4 ">
         <section className="flex flex-col">
-          <div className="flex  gap-1">
-            <p>{selectedBarber.name}</p>
-            <p>{selectedBarber.lastName}</p>
-          </div>
+          <p className=" text-xl">
+            {selectedBarber.name} {selectedBarber.lastName}
+          </p>
           <div>
             <span className="text-xs">{selectedBarber.email}</span>
           </div>
         </section>
 
         <div>
-          <Badge className="font-light">{selectedBarber.status}</Badge>
+          <BarberStatus status={selectedBarber.status} />
         </div>
       </header>
 

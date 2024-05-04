@@ -29,7 +29,7 @@ export default function Sidebar() {
   const path = usePathname()
   return (
     <aside
-      className={`h-[99.83vh]  flex flex-col max-sm:flex-row border border-border max-sm:h-[10vh] max-sm:border max-sm:w-full max-sm:gap-10 max-sm:px-6 max-sm:items-center shadow-sm shadow-grey transition-all ${
+      className={`h-[99.83vh]  bg-secondary flex flex-col max-sm:flex-row  max-sm:h-[10vh]  max-sm:w-full max-sm:gap-10 max-sm:px-6  max-sm:items-center  transition-all ${
         isSidebarSmall ? 'w-20' : 'w-64'
       }`}
     >
@@ -48,24 +48,19 @@ export default function Sidebar() {
       </header>
 
       <div className="h-5 max-sm:hidden">
-        <div className="border border-border" />
-
         <Button
-          variant="ghost"
           onClick={toggleSidebarSize}
-          className={`aspect-square w-10   bg-background border border-border  text-primary text- rounded-full relative bottom-5 ${
+          className={`aspect-square w-10  p-0 bg-secondary  hover:bg-secondary  text-primary text- rounded-full relative bottom-5 ${
             isSidebarSmall ? 'left-[70%]' : 'left-[90%]'
           }`}
         >
-          {isSidebarSmall ? (
-            <ArrowRight className="w-16" />
-          ) : (
-            <ArrowLeft className="w-16" />
-          )}
+          <ArrowRight
+            className={`transition-all duration-300 ${isSidebarSmall ? 'rotate-180' : 'rotate-[360deg]'}`}
+          />
         </Button>
       </div>
 
-      <section className="flex flex-col max-sm:flex-row flex-[2] gap-4 ">
+      <section className="flex flex-col max-sm:flex-row  max-sm:h-full  flex-[2] gap-4 ">
         <SidebarLink
           isSmall={isSidebarSmall}
           icon={<DashboardIcon />}

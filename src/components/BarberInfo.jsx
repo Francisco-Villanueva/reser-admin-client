@@ -133,7 +133,7 @@ export default function BarberInfo() {
         </Tabs>
       </div>
 
-      <Button type="submit" variant="outline" disabled={!disableButton}>
+      <Button type="submit" disabled={!disableButton}>
         Actualizar
       </Button>
       {loading && <FloatingLoader />}

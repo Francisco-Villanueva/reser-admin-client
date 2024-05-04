@@ -4,11 +4,10 @@ import TableTeamRow from './TableTeamRow'
 import Loader from './Loader'
 import Calendar from './Calendar'
 import { AppointmentServices } from '@/services'
-import Button from '@/commons/Button'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 export default function AppointmentsList() {
   const {
-    selectedBarber: { appointments, id },
+    selectedBarber: { appointments, id, isAdmin },
   } = useStore()
   const [date, setDate] = useState(new Date().toISOString().split('T')[0])
   const [view, setView] = useState('appointments')
@@ -22,14 +21,9 @@ export default function AppointmentsList() {
   }, [id])
   return (
     <section
-      className={
-        'flex flex-col gap-4   max-sm:gap-2 overflow-auto border-none p-0 '
-      }
+      className={`flex flex-col gap-4    max-sm:gap-2    py-2  h-[95%]  max-lg:h-[90%]  max-sm:h-[90%] `}
     >
-      <section className="flex   items-center gap-2">
-        <h2 className="text-black font-semibold max-md:text-xs">
-          ¿Qué turnos deseas ver?
-        </h2>
+      <section className="flex max-lg:flex-col   lg:items-center gap-2">
         <div className="flex gap-2">
           <Tabs defaultValue="appointments" className="w-[400px]">
             <TabsList>
@@ -49,40 +43,45 @@ export default function AppointmentsList() {
             </TabsList>
           </Tabs>
         </div>
-      </section>
-      {view === 'appointments' && (
-        <div className="flex flex-col gap-4">
-          {appointments && (
+
+        <div>
+          {appointments && view === 'appointments' && (
             <Calendar handleDate={(date) => setDate(date)} selectedDay={date} />
           )}
-          {appointments ? (
-            <TableTeamRow appointments={appointments} date={date} />
-          ) : (
-            <Loader />
-          )}
-        </div>
-      )}
-      {view === 'cancelled' && (
-        <div className="flex flex-col gap-4  text-dark-grey ">
-          {cancelledAppointments && (
+          {cancelledAppointments && view === 'cancelled' && (
             <Calendar
               handleDate={(date) => setDate(date)}
               selectedDay={date}
               canceled={true}
             />
           )}
-
-          {appointments ? (
-            <TableTeamRow
-              appointments={cancelledAppointments}
-              date={date}
-              canceled={true}
-            />
-          ) : (
-            <Loader />
-          )}
         </div>
-      )}
+      </section>
+
+      <section className="h-[80%] max-lg:h-[70%]">
+        {view === 'appointments' && (
+          <div className=" w-full  overflow-auto  gap-4 max-h-[100%]   max-sm:h-[100%]  ">
+            {appointments ? (
+              <TableTeamRow appointments={appointments} date={date} />
+            ) : (
+              <Loader />
+            )}
+          </div>
+        )}
+        {view === 'cancelled' && (
+          <div className="flex flex-col gap-4   ">
+            {appointments ? (
+              <TableTeamRow
+                appointments={cancelledAppointments}
+                date={date}
+                canceled={true}
+              />
+            ) : (
+              <Loader />
+            )}
+          </div>
+        )}
+      </section>
     </section>
   )
 }

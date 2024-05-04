@@ -8,11 +8,10 @@ import { message } from 'antd'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { Button } from '../ui/button'
-import { Input } from '../ui/input'
 import { InputWithLabel } from '@/commons/InputWithLabel'
 
 export default function LoginForm() {
-  const { setCurrentUser } = useStore()
+  const { setCurrentUser, setSelectedBarber } = useStore()
   const userName = useInput('', 'required')
   const password = useInput('', 'required')
   const router = useRouter()

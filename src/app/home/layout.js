@@ -44,7 +44,7 @@ export default function layout({ children }) {
       <div className="w-full flex flex-col  max-h-[100%] px-6   ">
         <Navbar/>
 
-        <div className="max-h-[85vh] h-[85vh]  max-sm:h-[83vh] relative">
+        <div className="max-h-[85vh] h-[85vh]  max-sm:h-[83vh] relative ">
           {children}
           <Aside/>
         </div>

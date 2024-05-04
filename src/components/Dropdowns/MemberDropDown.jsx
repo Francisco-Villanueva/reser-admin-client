@@ -1,21 +1,5 @@
 import React from 'react'
-import { Button } from '../ui/button'
-import {
-  ActivitySquare,
-  Edit,
-  LogOut,
-  MoreHorizontal,
-  PoundSterlingIcon,
-  Trash,
-  BotOff,
-  Option,
-  BotIcon,
-  CheckCheck,
-  ChevronUpCircleIcon,
-  XIcon,
-  Check,
-  Power,
-} from 'lucide-react'
+import { Edit, MoreHorizontal, Trash, XIcon, Check, Power } from 'lucide-react'
 import {
   DropdownMenuLabel,
   DropdownMenu,

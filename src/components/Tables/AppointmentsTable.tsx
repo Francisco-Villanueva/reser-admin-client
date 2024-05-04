@@ -3,7 +3,6 @@ import { CustomTable } from './CustomTable'
 import { ColumnDef } from '@tanstack/react-table'
 import { useStore } from '@/context/AdminContext'
 import { Badge } from '../ui/badge'
-import { Phone } from 'lucide-react'
 import { MailIcon, PhoneIcon } from '@/commons/Icons'
 
 export function AppointmentsTable() {

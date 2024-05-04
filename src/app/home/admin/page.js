@@ -1,25 +1,22 @@
 'use client'
-import Button from '@/commons/Button'
+
 import ChildrenLayout from '@/commons/ChildrenLayout'
 import { AddIcon } from '@/commons/Icons'
 import TitleView from '@/commons/TitleView'
-import Aside from '@/components/Aside'
 import {PickCalendar} from '@/components/Calendar/Calendar'
 import GridTeam from '@/components/GridTeam'
-import NewBarberForm from '@/components/NewBarberForm'
 import { useStore } from '@/context/AdminContext'
-import useModal from '@/hooks/useModal'
 import { AppointmentsTable } from '@/components/Tables'
 import { useAsideStore } from '@/context/AsideContext'
+import { Button } from '@/components/ui/button'
 
 
 export default function AdminPage() {
   const { barbers } = useStore()
   const { setAside } = useAsideStore()
-  const { openModal, isModalOpen, closeModal } = useModal()
 
   return (
-    <ChildrenLayout className={`flex flex-col justify-around gap-4  h-full `}>
+    <ChildrenLayout >
   
       
       <section className="   overflow-y-auto    h-full flex  flex-col  gap-2 ">
@@ -39,8 +36,7 @@ export default function AdminPage() {
 
       <div className="h-10 w-10 absolute bottom-0 right-0   rounded-full ">
         <Button
-          variant="primary"
-          className={' rounded-full p-1'}
+          className={' rounded-full h-full w-full p-0 '}
           onClick={()=>setAside('newBarber')}
         >
           <AddIcon />
@@ -48,11 +44,7 @@ export default function AdminPage() {
       </div>
 
      
-      {isModalOpen && (
-        <Aside title="Peluquero  Nuevo" closeModal={closeModal}>
-          <NewBarberForm closeModal={closeModal} />
-        </Aside>
-      )}
+     
     </ChildrenLayout>
   )
 }

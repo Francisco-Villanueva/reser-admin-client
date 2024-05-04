@@ -1,7 +1,7 @@
 import React from 'react'
 import { AsideTypes } from '@/types'
 import MemberAside from './MemberAside'
-import NewBarberForm from '../NewBarberForm'
+import NewBarberForm from './NewBarberForm'
 
 interface AsideContentProps {
   type: AsideTypes
