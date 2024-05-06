@@ -40,7 +40,7 @@ export default function Selecthours({ handleChangeHours }) {
   return (
     <section className="flex flex-col items-center  gap-4 h-full justify-between ">
       <div className="flex flex-col items-center  gap-4 ">
-        <section className="flex gap-6 items-center justify-around text-sm p-2 ">
+        <section className="flex gap-6 items-center justify-around text-sm p-2  ">
           {['Nuevo', 'Eliminar ', 'Actual'].map((type) => (
             <div className="flex items-center gap-1 max-sm:text-[10px]">
               <div
@@ -56,17 +56,7 @@ export default function Selecthours({ handleChangeHours }) {
               >
                 {' '}
               </div>
-              <p
-                className={`${
-                  type === 'Nuevo Horario'
-                    ? 'text-orange-300'
-                    : type === 'Eliminar Horario'
-                      ? 'text-error'
-                      : 'text-disabled'
-                }`}
-              >
-                {type}
-              </p>
+              <p>{type}</p>
             </div>
           ))}
         </section>

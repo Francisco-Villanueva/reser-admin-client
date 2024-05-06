@@ -29,7 +29,7 @@ export default function Sidebar() {
   const path = usePathname()
   return (
     <aside
-      className={`h-[99.83vh]  bg-secondary flex flex-col max-sm:flex-row  max-sm:h-[10vh]  max-sm:w-full max-sm:gap-10 max-sm:px-6  max-sm:items-center  transition-all ${
+      className={`h-[99.83vh]   bg-secondary flex flex-col max-sm:flex-row  max-sm:h-[10vh]  max-sm:w-full max-sm:gap-10 max-sm:px-6  max-sm:items-center  transition-all ${
         isSidebarSmall ? 'w-20' : 'w-64'
       }`}
     >
@@ -55,7 +55,7 @@ export default function Sidebar() {
           }`}
         >
           <ArrowRight
-            className={`transition-all duration-300 ${isSidebarSmall ? 'rotate-180' : 'rotate-[360deg]'}`}
+            className={`transition-all duration-300 ${isSidebarSmall ? ' rotate-[360deg] ' : 'rotate-180'}`}
           />
         </Button>
       </div>

@@ -19,6 +19,14 @@ export default function NewBarberForm() {
   const password = useInput('', 'required')
   const confirmPassword = useInput('', 'required')
 
+  const validationToSubmit =
+    name.value === '' ||
+    lastName.value === '' ||
+    email.value === '' ||
+    password.value === '' ||
+    userName.value === '' ||
+    lastName.value === '' ||
+    confirmPassword.value !== password.value
   const handleSumbitChanges = () => {
     const data = {
       name: name.value,
@@ -117,9 +125,8 @@ export default function NewBarberForm() {
         <div className="  w-full  ">
           <Button
             onClick={handleSumbitChanges}
-            variant="destructive"
-            className="p-2 rounded-md w-full text-white   "
-            disabled={name.value === '' || lastName.value === ''}
+            className="w-full"
+            disabled={validationToSubmit}
           >
             Cargar
           </Button>

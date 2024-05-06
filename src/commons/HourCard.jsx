@@ -23,7 +23,7 @@ export default function HourCard({
 }) {
   return (
     <div
-      className={`flex items-center gap-2  border border-border p-1 rounded-sm cursor-pointer hover:bg-secondary transition-all duration-200 ${hour.avaliable ? '' : 'bg-secondary-foreground/20 font-light '} `}
+      className={`flex items-center gap-2  border border-border p-1 rounded-sm cursor-pointer hover:bg-secondary transition-all duration-200 ${hour.avaliable ? '' : isNew ? '  ' : ' bg-secondary-foreground/5 font-light'}   `}
       onClick={onClick}
     >
       <HourStatus hour={hour} isDeleted={isDeleted} isNew={isNew} />

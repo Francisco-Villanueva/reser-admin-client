@@ -5,10 +5,12 @@ import { useStore } from '@/context/AdminContext'
 import { Badge } from '../ui/badge'
 import { MailIcon, PhoneIcon } from '@/commons/Icons'
 
-export function AppointmentsTable() {
-  const { appointments, barbers } = useStore()
-
-  const turnos: Appointment[] = appointments
+export function AppointmentsTable({
+  appointments,
+}: {
+  appointments: Appointment[]
+}) {
+  const { barbers } = useStore()
 
   const appointmentsColumns: ColumnDef<Appointment>[] = [
     {
@@ -59,6 +61,9 @@ export function AppointmentsTable() {
   ]
 
   return (
-    <CustomTable<Appointment> columns={appointmentsColumns} data={turnos} />
+    <CustomTable<Appointment>
+      columns={appointmentsColumns}
+      data={appointments}
+    />
   )
 }

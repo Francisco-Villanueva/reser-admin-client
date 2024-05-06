@@ -11,7 +11,7 @@ export default function BarberCard({ barber }) {
   const resetLogo =
     theme === 'light' ? '/images/RESET_C_negro.png' : '/images/RESET_C.png'
   return (
-    <div className=" flex flex-col  gap- items-center border border-border rounded-md  h-full">
+    <div className=" flex flex-col  gap-2 items-center border border-border rounded-md    ">
       <header className="h-20  w-full relative flex justify-center items-center">
         <div className="h-1/2 bg-secondary top-0 w-full flex items-center absolute ">
           <div className="absolute left-1">

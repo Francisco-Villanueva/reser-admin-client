@@ -40,7 +40,7 @@ export const CustomTable = function <T>({
   })
   return (
     <Table className=" ">
-      <TableHeader className="bg-secondary border ">
+      <TableHeader className="bg-secondary border border-border ">
         {table.getHeaderGroups().map((headerGroup) => (
           <TableRow key={headerGroup.id}>
             {headerGroup.headers.map((header) => (

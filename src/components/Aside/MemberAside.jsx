@@ -1,6 +1,5 @@
 import { useStore } from '@/context/AdminContext'
 import { Tabs, TabsList, TabsTrigger } from '../ui/tabs'
-import { Badge } from '../ui/badge'
 import BarberInfo from '../BarberInfo'
 import HoursInfo from '../HoursInfo'
 import { useState } from 'react'

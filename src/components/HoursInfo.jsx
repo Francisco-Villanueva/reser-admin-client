@@ -1,5 +1,3 @@
-import Button from '@/commons/Button'
-import { ArrowRight } from '@/commons/Icons'
 import useModal from '@/hooks/useModal'
 import React, { useEffect, useState } from 'react'
 import SelectDay from './SelectDay'
@@ -7,7 +5,6 @@ import Selecthours from './Selecthours'
 import { ApiServices } from '@/services'
 import { useStore } from '@/context/AdminContext'
 import FloatingLoader from '@/commons/FloatingLoader'
-import LayoutAsideItem from '@/commons/LayoutAsideItem'
 import { message } from 'antd'
 import { useAsideStore } from '@/context/AsideContext'
 
