@@ -9,16 +9,14 @@ export default function DateCard({
   return (
     <div
       onClick={handleDate}
-      className="flex flex-col items-center text-md border rounded-md  text-grey font-medium cursor-pointer transition-all duration-300 "
+      className="flex flex-col items-center text-md border border-border rounded-md  text-secondary font-medium cursor-pointer transition-all duration-300 "
     >
       <span
-        className={`${isSelected ? (canceled ? 'bg-error text-white' : 'bg-blue text-white') : ''}  px-2 rounded-t-md transition-all duration-300`}
+        className={`${isSelected ? (canceled ? 'bg-destructive text-white ' : 'bg-primary  ') : 'bg-accent text-black '}  px-2 rounded-t-md transition-all duration-300`}
       >
         {date.day}
       </span>
-      <span
-        className={`${isSelected ? 'text-black' : ''}  transition-all duration-300`}
-      >
+      <span className={`text-primary transition-all duration-300`}>
         {date.number}
       </span>
     </div>

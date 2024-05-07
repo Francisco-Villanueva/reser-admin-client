@@ -1,24 +1,25 @@
-import Button from '@/commons/Button'
-import { useStore } from '@/context/AdminContext'
 import useDate from '@/hooks/useDate'
-import { ApiServices } from '@/services/workhours.services'
-import React, { useEffect, useState } from 'react'
-
+import React from 'react'
+import { Tabs, TabsList, TabsTrigger } from './ui/tabs'
 export default function SelectDay({ handleDate, dateIndex }) {
   const { weeksDays } = useDate()
 
   return (
-    <div className="grid grid-cols-5 ">
+    <Tabs
+      defaultValue={dateIndex}
+      className="w-full justify-center gap-2 flex "
+    >
       {weeksDays.map((day, index) => (
-        <Button
-          variant={index + 2 === dateIndex ? 'secondary' : 'text'}
-          size={'small'}
-          className="rounded-md"
-          onClick={() => handleDate(index + 2)}
-        >
-          {day}
-        </Button>
+        <TabsList className="rounded-none p-0 py-0 border border-border ">
+          <TabsTrigger
+            className="h-full rounded-none"
+            value={index + 2}
+            onClick={() => handleDate(index + 2)}
+          >
+            {day}
+          </TabsTrigger>
+        </TabsList>
       ))}
-    </div>
+    </Tabs>
   )
 }

@@ -2,8 +2,8 @@
 import { useStore } from '@/context/AdminContext'
 import HourCard from '../commons/HourCard'
 import { useEffect, useState } from 'react'
-import Button from '../commons/Button'
 import Loader from './Loader'
+import { Button } from './ui/button'
 
 export default function Selecthours({ handleChangeHours }) {
   const { hoursToShow } = useStore()
@@ -38,55 +38,47 @@ export default function Selecthours({ handleChangeHours }) {
   }
 
   return (
-    <section className="flex flex-col items-center  gap-4 p-4 border rounded-md">
-      <section className="flex gap-6 items-center justify-around text-sm  ">
-        {['Nuevo', 'Eliminar ', 'Actual'].map((type) => (
-          <div className="flex items-center gap-1 max-sm:text-[10px]">
-            <div
-              className={`w-3 h-3 max-sm:w-[10px] max-sm:h-[10px] rounded-full ${
-                type === 'Actual'
-                  ? 'bg-green'
-                  : type === 'Nuevo'
-                    ? 'bg-orange-300'
-                    : type === 'Eliminar '
-                      ? 'bg-error'
-                      : 'bg-disabled'
-              }`}
-            >
-              {' '}
+    <section className="flex flex-col items-center  gap-4 h-full justify-between ">
+      <div className="flex flex-col items-center  gap-4 ">
+        <section className="flex gap-6 items-center justify-around text-sm p-2  ">
+          {['Nuevo', 'Eliminar ', 'Actual'].map((type) => (
+            <div className="flex items-center gap-1 max-sm:text-[10px]">
+              <div
+                className={`w-3 h-3 max-sm:w-[10px] max-sm:h-[10px] rounded-full ${
+                  type === 'Actual'
+                    ? 'bg-green'
+                    : type === 'Nuevo'
+                      ? 'bg-orange-300'
+                      : type === 'Eliminar '
+                        ? 'bg-error'
+                        : 'bg-disabled'
+                }`}
+              >
+                {' '}
+              </div>
+              <p>{type}</p>
             </div>
-            <p
-              className={`${
-                type === 'Nuevo Horario'
-                  ? 'text-orange-300'
-                  : type === 'Eliminar Horario'
-                    ? 'text-error'
-                    : 'text-disabled'
-              }`}
-            >
-              {type}
-            </p>
-          </div>
-        ))}
-      </section>
-      <div className="grid grid-cols-4 max-sm:grid-cols-3 gap-x-10 gap-y-2 ">
-        {hoursToShow ? (
-          hoursToShow.map((hour) => (
-            <HourCard
-              hour={hour}
-              isNew={newHours.some((h) => h.value === hour.value)}
-              isDeleted={deletedHours.some((h) => h.value === hour.value)}
-              onClick={() => handleSelect(hour)}
-            />
-          ))
-        ) : (
-          <Loader />
-        )}
+          ))}
+        </section>
+        <div className="grid grid-cols-4 max-sm:grid-cols-3 gap-x-10 gap-y-2 ">
+          {hoursToShow ? (
+            hoursToShow.map((hour) => (
+              <HourCard
+                hour={hour}
+                isNew={newHours.some((h) => h.value === hour.value)}
+                isDeleted={deletedHours.some((h) => h.value === hour.value)}
+                onClick={() => handleSelect(hour)}
+              />
+            ))
+          ) : (
+            <Loader />
+          )}
+        </div>
       </div>
       <Button
-        variant="primary"
+        variant="outline"
         onClick={handleSubmit}
-        className="p-2 rounded-md w-full  "
+        className=" w-full  "
         disabled={
           newHours.length === hoursToShow.filter((e) => e.avaliable).length
         }

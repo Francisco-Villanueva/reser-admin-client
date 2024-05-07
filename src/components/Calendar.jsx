@@ -40,13 +40,13 @@ export default function Calendar({
     })
   })
   return (
-    <section className="flex flex-col items-center gap-2">
+    <section className="flex flex-col items-center gap-2 border-2 rounded-b-md border-border ">
       <span
-        className={` text-sm font-semibold text-white p-2 ${canceled ? 'bg-error' : 'bg-black'}  rounded-md w-[50%] max-md:w-full`}
+        className={` text-center uppercase text-xl font-semibold  p-2 ${canceled ? 'bg-destructive text-white' : 'bg-primary text-secondary'}   w-full`}
       >
         {getMonth(selectedDay)}
       </span>
-      <div className="flex gap-4 max-sm:gap-1 justify-around items-center  max-md:w-full ">
+      <div className="flex gap-4 max-sm:gap-1 justify-around items-center  max-md:w-full pb-2 ">
         <Button onClick={() => setCalenadarLimits((s) => s - 1)}>
           <ArrowLeft className={'w-[14px]'} />
         </Button>

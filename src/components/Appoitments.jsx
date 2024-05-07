@@ -5,14 +5,12 @@ export default function Appoitments({ appointment, canceled = false }) {
   const { date, appointments } = appointment
 
   const appointmentsToShow = canceled
-    ? appointments.filter((app) => app.name !== '')
+    ? appointments.filter((appointment) => appointment.name !== '')
     : appointments
   return (
-    <div
-      className={`flex flex-col gap-2 w-1/3 max-lg:w-[85%] m-auto  border-l-2 pl-2 ${canceled ? 'border-error' : 'border-blue'}  `}
-    >
+    <div className={`flex flex-col gap-2       `}>
       {!appointmentsToShow.length ? (
-        <span>No hay trunos cancelados</span>
+        <span className="h-full">No hay trunos cancelados</span>
       ) : (
         appointmentsToShow.map((appointment) => (
           <AppointmentCard
