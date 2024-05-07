@@ -5,6 +5,20 @@ import { useStore } from '@/context/AdminContext'
 import useModal from '@/hooks/useModal'
 import DeleteAppointment from '@/components/DeleteAppointment'
 import { Button } from '@/components/ui/button'
+import { MessageCircleIcon } from 'lucide-react'
+
+export function Contact({ phoneNumber }) {
+  const whatsappURL = `https://wa.me/+54${phoneNumber}`
+  return (
+    <a
+      href={whatsappURL}
+      className="flex items-center gap-2 text-xs border-green border px-2 rounded-md hover:bg-green/75 transition-all duration-300"
+    >
+      <span>Enviar mensaje</span>
+      <MessageCircleIcon className="w-4" />
+    </a>
+  )
+}
 
 export default function AppointmentCard({ appointment, canceled = false }) {
   const { name, email, phone, hour, id, date } = appointment
@@ -50,10 +64,15 @@ export default function AppointmentCard({ appointment, canceled = false }) {
       </div>
 
       {inforModal.isModalOpen && (
-        <div className="flex flex-col gap-1 text-sm ml-4 ">
-          <p className="flex gap-1">
-            <PhoneIcon className="w-3" /> {phone}
-          </p>
+        <div className="flex flex-col gap-1 text-sm ml-4 items-start ">
+          <div className="flex gap-4 items-center">
+            <p className="flex gap-1">
+              <PhoneIcon className="w-3" />
+              {phone}
+            </p>
+            <Contact phoneNumber={phone} />
+          </div>
+
           <p className="flex gap-1">
             <MailIcon className="w-3" /> {email}
           </p>

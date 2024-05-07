@@ -1,13 +1,14 @@
 'use client'
 import LoginForm from '@/components/Login/LoginForm'
 import { useStore } from '@/context/AdminContext'
+import { useTheme } from 'next-themes'
 
 import Image from 'next/image'
 import React, { useEffect } from 'react'
 
 export default function LoginPage() {
   const { setCurrentUser } = useStore()
-
+  const { theme } = useTheme()
   useEffect(() => {
     localStorage.clear()
     setCurrentUser(null)
@@ -22,7 +23,11 @@ export default function LoginPage() {
 
           <Image
             className="max-lg:w-[250px] z-10"
-            src="/images/RESET_L _dark.png"
+            src={
+              theme === 'light'
+                ? '/images/RESET_L _dark.png'
+                : '/images/RESET_L_light.png'
+            }
             width={350}
             height={50}
             alt="Reset Hair Studio"
