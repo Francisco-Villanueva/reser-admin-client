@@ -13,8 +13,7 @@ export default function AppointmentList() {
   const { formatToYMD } = useDate()
 
   const [listLimit, setListLimit] = useState(4)
-  const sortedByDate = appointmentsByDate.toReversed()
-  const lastAppoitnments = sortedByDate.slice(
+  const lastAppoitnments = appointmentsByDate.slice(
     appointmentsByDate.length - listLimit,
   )
   return (
