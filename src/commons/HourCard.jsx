@@ -1,5 +1,20 @@
 import React from 'react'
 
+const HourStatus = ({ hour, isNew = false, isDeleted = false }) => {
+  return (
+    <div
+      className={`w-3 h-3 rounded-full ${
+        hour.avaliable && !isDeleted
+          ? 'bg-green'
+          : isNew
+            ? 'bg-orange-300'
+            : isDeleted
+              ? 'bg-error'
+              : 'bg-disabled'
+      }`}
+    ></div>
+  )
+}
 export default function HourCard({
   hour,
   onClick,
@@ -8,20 +23,10 @@ export default function HourCard({
 }) {
   return (
     <div
-      className="flex items-center gap-2 border p-1 rounded-sm cursor-pointer hover:bg-light-grey transition-all duration-200 hover:scale-105"
+      className={`flex items-center gap-2  border border-border p-1 rounded-sm cursor-pointer hover:bg-secondary transition-all duration-200 ${hour.avaliable ? '' : isNew ? '  ' : ' bg-secondary-foreground/5 font-light'}   `}
       onClick={onClick}
     >
-      <div
-        className={`w-3 h-3 rounded-full ${
-          hour.avaliable && !isDeleted
-            ? 'bg-green'
-            : isNew
-              ? 'bg-orange-300'
-              : isDeleted
-                ? 'bg-error'
-                : 'bg-disabled'
-        }`}
-      ></div>
+      <HourStatus hour={hour} isDeleted={isDeleted} isNew={isNew} />
       <p
         className={`${
           hour.avaliable && !isDeleted
@@ -30,7 +35,7 @@ export default function HourCard({
               ? 'text-orange-300'
               : isDeleted
                 ? 'text-error'
-                : 'text-disabled'
+                : 'text-foreground'
         }`}
       >
         {hour.value}

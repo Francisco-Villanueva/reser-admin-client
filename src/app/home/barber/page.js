@@ -8,5 +8,5 @@ export default function BarberPage() {
   useEffect(() => {
     setSelectedBarber(currentUser)
   }, [])
-  return <AppointmentsList />
+  return  <AppointmentsList />
 }

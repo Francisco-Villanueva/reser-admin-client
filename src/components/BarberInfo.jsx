@@ -1,14 +1,14 @@
-import BarberStatus from '@/commons/BarberStatus'
-import Button from '@/commons/Button'
 import FloatingLoader from '@/commons/FloatingLoader'
-import Input from '@/commons/Input'
+import { InputWithLabel } from '@/commons/InputWithLabel'
 import { useStore } from '@/context/AdminContext'
 import useInput from '@/hooks/useInput'
 import { ApiServices } from '@/services/workhours.services'
 import { message } from 'antd'
 import React, { useEffect, useState } from 'react'
+import { Tabs, TabsList, TabsTrigger } from './ui/tabs'
+import { Button } from './ui/button'
 
-export default function BarberInfo({ closeModal }) {
+export default function BarberInfo() {
   const { selectedBarber, setBarbers } = useStore()
   const name = useInput(selectedBarber.name, null)
   const lastName = useInput(selectedBarber.lastName, null)
@@ -73,7 +73,6 @@ export default function BarberInfo({ closeModal }) {
         ApiServices.getAllBarbers().then((res) => {
           setBarbers(res.data)
           message.success('Cambios realizados')
-          closeModal()
         })
       })
       .catch(() => {
@@ -91,53 +90,50 @@ export default function BarberInfo({ closeModal }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-2">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col justify-between  h-full p-2"
+    >
       <div className="flex flex-col gap-2 w-full">
         <div className="flex gap-2">
-          <Input
+          <InputWithLabel
             defaultValue={selectedBarber.name}
-            title={'Nombre'}
+            label={'Nombre'}
             {...name}
           />
-          <Input
+          <InputWithLabel
             defaultValue={selectedBarber.lastName}
-            title={'Apellido'}
+            label={'Apellido'}
             {...lastName}
           />
         </div>
         <div className="flex flex-col gap-2">
-          <Input
+          <InputWithLabel
             defaultValue={selectedBarber.userName}
-            title={'Nombre de usuario'}
+            label={'Nombre de usuario'}
             {...userName}
           />
-          <Input
+          <InputWithLabel
             defaultValue={selectedBarber.email}
-            title={'Email'}
+            label={'Email'}
             {...email}
           />
-          <Input type={'password'} title={'Password'} {...password} />
+          <InputWithLabel type={'password'} label={'Password'} {...password} />
         </div>
 
-        <Button
-          onClick={handleBarberStatus}
-          className={`border w-1/4  p-1 rounded-md ${
-            newStatus === 'active'
-              ? 'border-success text-success font-normal'
-              : 'border-error text-error font-normal'
-          }`}
-        >
-          <BarberStatus status={newStatus} />
-          {newStatus}
-        </Button>
+        <Tabs defaultValue="active" className="w-[400px]">
+          <TabsList>
+            <TabsTrigger value="active" onClick={handleBarberStatus}>
+              Active
+            </TabsTrigger>
+            <TabsTrigger value="inactive" onClick={handleBarberStatus}>
+              inactive
+            </TabsTrigger>
+          </TabsList>
+        </Tabs>
       </div>
 
-      <Button
-        type="submit"
-        variant="primary"
-        className="p-2 rounded-md w-full  "
-        disabled={!disableButton}
-      >
+      <Button type="submit" disabled={!disableButton}>
         Actualizar
       </Button>
       {loading && <FloatingLoader />}

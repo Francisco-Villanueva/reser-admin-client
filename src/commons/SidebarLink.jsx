@@ -11,29 +11,13 @@ export default function SidebarLink({
   return (
     <Link
       href={`${href}`}
-      className={`flex max-sm:flex-col max-sm:justify-center  items-center h-12 ${
-        isActive ? 'text-blue' : undefined
+      className={`flex max-sm:flex-col max-sm:justify-center text-md border-primary  ${isActive ? 'sm:border-l-4 max-sm:border-t-4' : ''}  items-center h-12   max-sm:h-full transition-all duration-200 ${
+        isActive ? 'text-primary bg-background/75 ' : ' text-primary/50'
       } ${className}`}
     >
-      {isActive && (
-        <div className="h-full max-sm:h-[2px] w-1 max-sm:w-full  bg-blue rounded-lg"></div>
-      )}
-
-      <div
-        className={`flex gap-2 max-sm:p-1 ${
-          isActive ? 'pl-[26px]' : 'p-[30px]'
-        }`}
-      >
+      <div className={`flex gap-2 max-sm:p-1  pl-4  `}>
         {icon}
-        <span
-          className={`${
-            isActive
-              ? 'text-lg font-bold text-blue'
-              : 'font-medium text-dark-grey'
-          } ${isSmall && 'hidden'}`}
-        >
-          {title}
-        </span>
+        <span className={`  ${isSmall && 'hidden'}`}>{title}</span>
       </div>
     </Link>
   )

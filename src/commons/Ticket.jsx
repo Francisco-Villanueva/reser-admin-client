@@ -7,7 +7,9 @@ export default function Ticket({ children, variant = 'primary' }) {
     outline: 'bg-white  border border-black   text-black  ',
   }
   return (
-    <span className={`p-1 ${VARIANTS[variant]} w-full  rounded-md flex  gap-2`}>
+    <span
+      className={`p-1 bg-black text-center items-center w-full  rounded-md flex  gap-2`}
+    >
       {children}
     </span>
   )
