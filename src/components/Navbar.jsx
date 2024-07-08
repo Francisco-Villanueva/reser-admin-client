@@ -1,48 +1,13 @@
-import React from 'react'
-import Button from '@/commons/Button'
-import { DropDownArrow, UserIcon } from '@/commons/Icons'
-import { useStore } from '@/context/AdminContext'
-import useModal from '@/hooks/useModal'
-import { useRouter } from 'next/navigation'
-
-export default function Navbar({ title, className = '' }) {
-  const { currentUser, setCurrentUser } = useStore()
-
-  const { isModalOpen, closeModal, openModal } = useModal()
-
-  const handleOpen = () => {
-    !isModalOpen ? openModal() : closeModal()
-  }
-
-  const router = useRouter()
-  const handleLogOut = () => {
-    router.push('/login')
-  }
+import { NavbarDropDown } from './Dropdowns/NavbarDropDown'
+import { ThemeSwitcher } from './Theme/ThemeSwitcher'
+export default function Navbar() {
   return (
-    <nav className={`flex justify-between items-center ${className}`}>
-      <h1 className="font-semibold text-xl text-black">{title || ''}</h1>
-
-      <div
-        className="flex flex-col items-center gap-2 relative "
-        onClick={handleOpen}
-      >
-        <div className="flex gap-2 items-center rounded-md transition-colors duration-200 cursor-pointer hover:bg-grey p-2  ">
-          <div className="  flex items-center gap-2 text-black font-semibold  ">
-            <UserIcon className="w-full h-[1.5rem]" />
-            <p>{currentUser?.name}</p>
-          </div>
-          <DropDownArrow className={'w-3'} />
-        </div>
-        {isModalOpen && (
-          <Button
-            className="absolute bottom-[-40px] rounded-md"
-            size={'small'}
-            variant="dark"
-            onClick={handleLogOut}
-          >
-            Log Out
-          </Button>
-        )}
+    <nav
+      className={`flex justify-end items-center  w-full h-[10vh] max-sm:h-[6vh]  `}
+    >
+      <div className="flex items-center gap-2">
+        <ThemeSwitcher />
+        <NavbarDropDown />
       </div>
     </nav>
   )

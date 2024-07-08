@@ -1,10 +1,10 @@
 'use client'
-import Button from '@/commons/Button'
 import ChildrenLayout from '@/commons/ChildrenLayout'
 import AppointmentsList from '@/components/AppointmentsList'
 import { useStore } from '@/context/AdminContext'
 import { BarberServices } from '@/services/barber.services'
 import React, { useEffect } from 'react'
+import { Tabs,  TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export default function TunosListPage() {
   const { barbers, selectedBarber, setSelectedBarber } = useStore()
@@ -21,19 +21,33 @@ export default function TunosListPage() {
   }
 
   return (
-    <ChildrenLayout className="flex flex-col gap-2">
-      <section className="flex gap-4 ">
-        {barbers.map((barber) => (
-          <Button
-           
-            className={` ${barber.id === selectedBarber?.id ?"bg-blue text-white":"text-blue"} p-2 rounded-md `}
-            onClick={() => handleSelectBarber(barber.id)}
-          >
-            {barber.name}
-          </Button>
-        ))}
-      </section>
-      <hr/>
+      <ChildrenLayout>
+
+    
+        <div className=' flex bg-accent rounded-md  '>
+
+          <div className='flex gap-4 h-full items-center  justify-between  w-full  border border-border rounded-md '>
+            
+            <div className='px-2 font-semibold '>Peluqueros</div>
+            <Tabs defaultValue={selectedBarber?.id || barbers[0]?.id} className='p-0'>
+              <TabsList className='bg-primary' >
+              {barbers.map((barber) => (
+                <TabsTrigger
+                value={barber.id}
+                
+                onClick={() => handleSelectBarber(barber.id)}
+                >
+                        {barber.name}
+                
+                    </TabsTrigger>
+                  ))}
+            
+              </TabsList>
+            </Tabs>
+        </div>
+      </div>
+      
+     
       {selectedBarber && <AppointmentsList />}
     </ChildrenLayout>
   )

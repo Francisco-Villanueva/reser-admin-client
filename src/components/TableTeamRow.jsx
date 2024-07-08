@@ -25,12 +25,10 @@ export default function TableTeamRow({ appointments, date, canceled = false }) {
   const resultArray = Object.values(organizedAppointments)
 
   return (
-    <div className="flex flex-col gap-2  overflow-auto max-h-[90%]">
-      <div className="flex flex-col gap-2  ">
-        {resultArray.map((appointment) => (
-          <Appoitments appointment={appointment} canceled={canceled} />
-        ))}
-      </div>
+    <div className="flex flex-col gap-2      w-full  ] ">
+      {resultArray.map((appointment) => (
+        <Appoitments appointment={appointment} canceled={canceled} />
+      ))}
     </div>
   )
 }

@@ -1,46 +1,53 @@
 'use client'
-import Button from '@/commons/Button'
+
 import ChildrenLayout from '@/commons/ChildrenLayout'
-import { AddIcon, GridLayoutIcon, TableDisplayIcon } from '@/commons/Icons'
+import { AddIcon, BellIcon } from '@/commons/Icons'
 import TitleView from '@/commons/TitleView'
-import Aside from '@/components/Aside'
+import {PickCalendar} from '@/components/Calendar/Calendar'
 import GridTeam from '@/components/GridTeam'
-import Loader from '@/components/Loader'
-import NewBarberForm from '@/components/NewBarberForm'
-import TableTeam from '@/components/TableTeam'
 import { useStore } from '@/context/AdminContext'
-import useModal from '@/hooks/useModal'
-import React, { useState } from 'react'
+import { useAsideStore } from '@/context/AsideContext'
+import { Button } from '@/components/ui/button'
+import AppointmentList from '@/components/Tables/AppointmentList'
+
 
 export default function AdminPage() {
-  const { barbers } = useStore()
-  const { openModal, isModalOpen, closeModal } = useModal()
+  const { barbers, dateOfFilter } = useStore()
+  const { setAside } = useAsideStore()
+
 
   return (
-    <ChildrenLayout className={`flex flex-col justify-around gap-4`}>
-      <section className="w-full flex  justify-between    ">
-        <TitleView>Lista de peluqueros</TitleView>
-      </section>
-      <hr />
-      <section className="   overflow-y-auto    h-full   ">
-        <GridTeam team={barbers} />
+    <ChildrenLayout >
+      <section className=" flex  flex-col h-full justify-between gap-4   overflow-auto   ">
+        <div className='flex flex-col gap-2'>
+
+          <TitleView>Lista de peluqueros</TitleView>
+          <GridTeam team={barbers} />
+        </div>
+        
+        <div className='flex flex-col gap-2 flex-grow brder h-[70%] '>
+        <div className='flex justify-center items-center gap-4 font-semibold text-2xl'>
+          <h2>Notifications</h2>
+          <BellIcon/>
+        </div>
+        <div className='flex items-start gap-8 h-full px-4 max-lg:flex-col  max-lg:items-center'>
+            <PickCalendar/>
+            <AppointmentList/>
+          </div>
+        </div>
       </section>
 
-      <div className="h-10 w-10 absolute bottom-[1.5rem] right-[1rem]   rounded-full ">
+      <div className="h-10 w-10 absolute bottom-0 right-0   rounded-full ">
         <Button
-          variant="primary"
-          className={' rounded-full p-1'}
-          onClick={openModal}
+          className={' rounded-full h-full w-full p-0 '}
+          onClick={()=>setAside('newBarber')}
         >
           <AddIcon />
         </Button>
       </div>
 
-      {isModalOpen && (
-        <Aside title="Peluquero  Nuevo" closeModal={closeModal}>
-          <NewBarberForm closeModal={closeModal} />
-        </Aside>
-      )}
+     
+     
     </ChildrenLayout>
   )
 }
