@@ -1,7 +1,7 @@
 'use client'
 
 import ChildrenLayout from '@/commons/ChildrenLayout'
-import { AddIcon } from '@/commons/Icons'
+import { AddIcon, BellIcon } from '@/commons/Icons'
 import TitleView from '@/commons/TitleView'
 import {PickCalendar} from '@/components/Calendar/Calendar'
 import GridTeam from '@/components/GridTeam'
@@ -26,16 +26,11 @@ export default function AdminPage() {
         </div>
         
         <div className='flex flex-col gap-2 flex-grow brder h-[70%] '>
-          <section className='flex  p-2 justify-between'>
-            <TitleView>Proximos turnos</TitleView>
-
-            <div>
-              <span className=' uppercase '>
-                {dateOfFilter ? dateOfFilter : "Todos"}
-              </span>
-            </div>
-          </section>
-          <div className='flex items-start gap-8 h-full px-4 '>
+        <div className='flex justify-center items-center gap-4 font-semibold text-2xl'>
+          <h2>Notifications</h2>
+          <BellIcon/>
+        </div>
+        <div className='flex items-start gap-8 h-full px-4 max-lg:flex-col  max-lg:items-center'>
             <PickCalendar/>
             <AppointmentList/>
           </div>

@@ -26,7 +26,7 @@ export default function TunosListPage() {
     
         <div className=' flex bg-accent rounded-md  '>
 
-          <div className='flex gap-4 h-full items-center border border-border rounded-md '>
+          <div className='flex gap-4 h-full items-center  justify-between  w-full  border border-border rounded-md '>
             
             <div className='px-2 font-semibold '>Peluqueros</div>
             <Tabs defaultValue={selectedBarber?.id || barbers[0]?.id} className='p-0'>

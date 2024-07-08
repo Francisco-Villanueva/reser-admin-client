@@ -31,7 +31,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/models/root.store.tsx"  ],
+, "src/models/root.store.tsx", "src/context/AdminContext.jsx"  ],
   "exclude": [
     "node_modules"
   ]

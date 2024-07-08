@@ -4,12 +4,14 @@ import BarberInfo from '../BarberInfo'
 import HoursInfo from '../HoursInfo'
 import { useState } from 'react'
 import BarberStatus from '@/commons/BarberStatus'
+import AsideBackground from './AsideBackground'
 
 export default function MemberAside() {
   const [info, setInfo] = useState('perfil')
   const { selectedBarber } = useStore()
   return (
     <aside className="flex flex-col gap-2 h-full">
+      <AsideBackground />
       <header className="flex   justify-between  bg-secondary rounded-md p-4 ">
         <section className="flex flex-col">
           <p className=" text-xl">

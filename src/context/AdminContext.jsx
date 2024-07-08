@@ -11,7 +11,7 @@ const initialState = {
   selectedBarber: { ...userModel },
   selectedDay: {},
   currentUser: { ...userModel },
-  setBarbers: () => {},
+  setBarbers: (barbers) => {},
   setCurrentUser: () => {},
   setHoursToShow: () => {},
   setSelectedBarber: () => {},
@@ -33,20 +33,20 @@ export function AdminProvider({ children }) {
     currentUser: { ...userModel },
   })
 
-  const setAppointments = async (appointments) => {
+  const setAppointments = (appointments) => {
     setState((state) => ({
       ...state,
       appointments,
       appointmentsByDate: appointments,
     }))
   }
-  const setDateOfFilter = async (dateOfFilter) => {
+  const setDateOfFilter = (dateOfFilter) => {
     setState((state) => ({
       ...state,
       dateOfFilter,
     }))
   }
-  const filterAppointments = async (date) => {
+  const filterAppointments = (date) => {
     const filteredAppointments = date
       ? state.appointments.filter((appointment) => appointment.date === date)
       : state.appointments
@@ -57,10 +57,10 @@ export function AdminProvider({ children }) {
     }))
   }
 
-  const setCurrentUser = async (user) => {
+  const setCurrentUser = (user) => {
     setState((state) => ({ ...state, currentUser: user }))
   }
-  const setBarbers = async (barbers) => {
+  const setBarbers = (barbers) => {
     setState((state) => ({ ...state, barbers }))
   }
 

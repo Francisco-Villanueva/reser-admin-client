@@ -2,6 +2,7 @@ import React from 'react'
 import { AsideTypes } from '@/types'
 import MemberAside from './MemberAside'
 import NewBarberForm from './NewBarberForm'
+import DeleteMemberAside from './DeleteMemberAside'
 
 interface AsideContentProps {
   type: AsideTypes
@@ -9,7 +10,7 @@ interface AsideContentProps {
 export default function AsideContent({ type }: AsideContentProps) {
   switch (type) {
     case 'deleteMember':
-      return <h2>Delete Members</h2>
+      return <DeleteMemberAside />
     case 'newBarber':
       return <NewBarberForm />
     case 'editMembers':

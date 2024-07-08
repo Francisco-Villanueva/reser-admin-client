@@ -25,6 +25,10 @@ export default function MemberDropDown({ member }) {
     setAside('editMembers')
     setSelectedBarber(member)
   }
+  const handleDeleteMember = () => {
+    setAside('deleteMember')
+    setSelectedBarber(member)
+  }
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -39,7 +43,7 @@ export default function MemberDropDown({ member }) {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem onClick={() => setAside('deleteMember')}>
+          <DropdownMenuItem onClick={handleDeleteMember}>
             <Trash className="mr-2 h-4 w-4" />
             <span>Delete</span>
           </DropdownMenuItem>
@@ -48,28 +52,6 @@ export default function MemberDropDown({ member }) {
             <Edit className="mr-2 h-4 w-4" />
             <span>Edit</span>
           </DropdownMenuItem>
-          <DropdownMenuSub>
-            <DropdownMenuSubTrigger>
-              <Power className="mr-2 h-4 w-4" />
-              <span>Status</span>
-            </DropdownMenuSubTrigger>
-            <DropdownMenuPortal>
-              <DropdownMenuSubContent>
-                <DropdownMenuItem>
-                  <Badge variant="outline">
-                    <Check className="mr-2 h-4 w-4" />
-                    active
-                  </Badge>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Badge variant="default">
-                    <XIcon className="mr-2 h-4 w-4" />
-                    inactive
-                  </Badge>
-                </DropdownMenuItem>
-              </DropdownMenuSubContent>
-            </DropdownMenuPortal>
-          </DropdownMenuSub>
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>

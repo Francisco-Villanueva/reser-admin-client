@@ -7,9 +7,12 @@ import { message } from 'antd'
 import React, { useState } from 'react'
 import { Button } from '../ui/button'
 import { useTheme } from 'next-themes'
+import { useAsideStore } from '@/context/AsideContext'
+import AsideBackground from './AsideBackground'
 
 export default function NewBarberForm() {
   const { setBarbers } = useStore()
+  const { setAside } = useAsideStore()
   const [loading, setLoading] = useState(false)
   const { theme } = useTheme()
   const name = useInput('', 'required')
@@ -43,6 +46,7 @@ export default function NewBarberForm() {
         ApiServices.getAllBarbers().then((res) => {
           setBarbers(res.data)
           setLoading(false)
+          setAside(undefined)
         })
       })
       .catch(() => {
@@ -52,23 +56,8 @@ export default function NewBarberForm() {
   }
   return (
     <div className="flex flex-col h-full w-full    ">
-      <div className="absolute h-full w-full top-0 left-0  -z-10 grid place-items-center opacity-25 ">
-        <div className="absolute h-64 w-64 bg-primary/20 top-0 left-0 rounded-br-full "></div>
-        <div className=" h-64 w-64  rounded-full p-2 ">
-          <img
-            src={
-              theme === 'light'
-                ? '/images/RESET_C_negro.png'
-                : '/images/RESET_C.png'
-            }
-            className="opacity-20"
-            alt="reset salong bahia blanca"
-          />
-        </div>
-        <div className="absolute h-56 w-56 bg-primary/50 bottom-0 right-0 rounded-tl-full "></div>
-      </div>
+      <AsideBackground />
       <h2 className="text-lg uppercase">Formulario de ingreso</h2>
-
       <section className="flex flex-col flex-grow    justify-between">
         <div className="h-full ">
           <div className="flex flex-col  gap-3  p-4  max-sm:text-sm    ">

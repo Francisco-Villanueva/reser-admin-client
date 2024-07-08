@@ -51,18 +51,18 @@ export default function DeleteAppointment({ modal, appointmentId }) {
           <Loader />
         ) : (
           <div className="h-full  flex flex-col gap-4 justify-center items-center">
-            <h2 className="text-black font-semibold text-xl">
-              {appointment.name}
-            </h2>
-
-            <div className="flex flex-col w-2/3 gap-1 ">
-              <span className="grid grid-cols-2 ">
-                <strong>Día</strong>
-                <Ticket variant="secondary">{appointment.date}</Ticket>
+            <div className="flex flex-col mx-auto w-2/3 gap-1 ">
+              <span className="flex justify-between  w-full">
+                <span>Nombre</span>
+                <span>{appointment.name}</span>
               </span>
-              <span className="grid grid-cols-2 ">
-                <strong>Hora</strong>
-                <Ticket variant="secondary">{appointment.time} hs</Ticket>
+              <span className="flex justify-between  w-full">
+                <span>Dia</span>
+                <span>{appointment.date}</span>
+              </span>
+              <span className=" flex justify-between  w-full">
+                <span>Hora</span>
+                <span>{appointment.time} hs</span>
               </span>
             </div>
           </div>

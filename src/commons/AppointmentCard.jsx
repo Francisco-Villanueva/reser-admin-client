@@ -12,7 +12,7 @@ export function Contact({ phoneNumber }) {
   return (
     <a
       href={whatsappURL}
-      className="flex items-center gap-2 text-xs border-green border px-2 rounded-md hover:bg-green/75 transition-all duration-300"
+      className="flex items-center gap-2 text-xs border-accent border px-2 rounded-md hover:bg-green/75 transition-all duration-300"
     >
       <span>Enviar mensaje</span>
       <MessageCircleIcon className="w-4" />

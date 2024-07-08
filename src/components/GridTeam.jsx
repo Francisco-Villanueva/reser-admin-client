@@ -3,7 +3,7 @@ import BarberCard from './BarberCard'
 
 export default function GridTeam({ team = [] }) {
   return (
-    <div className="grid grid-cols-5 gap-2  w-full max-h-full ">
+    <div className="grid grid-cols-5 gap-2 max-lg:grid-cols-3 max-md:grid-cols-2  w-full max-h-full ">
       {team
         .sort((a, b) => a.id - b.id)
         .map((barber) => (

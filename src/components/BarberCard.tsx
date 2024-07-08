@@ -4,8 +4,15 @@ import BarberStatus from '@/commons/BarberStatus'
 import MemberDropDown from './Dropdowns/MemberDropDown'
 import Image from 'next/image'
 import { useTheme } from 'next-themes'
-
-export default function BarberCard({ barber }) {
+import { User } from '@/types'
+interface BarberCardProps {
+  barber: User
+  readonly?: boolean
+}
+export default function BarberCard({
+  barber,
+  readonly = false,
+}: BarberCardProps) {
   const { theme } = useTheme()
 
   const resetLogo =
@@ -17,16 +24,19 @@ export default function BarberCard({ barber }) {
           <div className="absolute left-1">
             <BarberStatus status={barber.status} />
           </div>
-          <div className="absolute right-1">
-            <MemberDropDown member={barber} />
-          </div>
+          {!readonly && (
+            <div className="absolute right-1">
+              <MemberDropDown member={barber} />
+            </div>
+          )}
         </div>
         <div className="h-1/2 bg w-full bottom-0  absolute"></div>
         <div className="h-5/6 aspect-square relative ">
           <Image
-            src={barber.img ? barber.img : resetLogo}
+            src={resetLogo}
             objectFit="cover"
             fill
+            alt="resetLogo"
             className=" rounded-full bg-secondary p-1"
           />
         </div>
