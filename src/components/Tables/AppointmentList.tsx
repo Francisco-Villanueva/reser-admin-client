@@ -1,3 +1,4 @@
+'use client'
 import { useStore } from '@/context/AdminContext'
 import { Appointment } from '@/types'
 import React, { useState } from 'react'

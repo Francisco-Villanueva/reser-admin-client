@@ -1,5 +1,5 @@
 import React from 'react'
-import { Edit, MoreHorizontal, Trash, XIcon, Check, Power } from 'lucide-react'
+import { Edit, MoreHorizontal, Trash } from 'lucide-react'
 import {
   DropdownMenuLabel,
   DropdownMenu,
@@ -8,12 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuContent,
   DropdownMenuSeparator,
-  DropdownMenuSub,
-  DropdownMenuSubTrigger,
-  DropdownMenuPortal,
-  DropdownMenuSubContent,
 } from '../ui/dropdown-menu'
-import { Badge } from '../ui/badge'
 import { useAsideStore } from '@/context/AsideContext'
 import { useStore } from '@/context/AdminContext'
 
