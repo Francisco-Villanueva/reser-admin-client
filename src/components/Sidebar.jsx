@@ -66,7 +66,10 @@ export default function Sidebar() {
           icon={<DashboardIcon />}
           title="Dashboard"
           href="/home/admin"
-          isActive={!path.split('/').includes('turnos')}
+          isActive={
+            !path.split('/').includes('turnos') &&
+            !path.split('/').includes('clientes')
+          }
         />
 
         <SidebarLink
@@ -75,6 +78,13 @@ export default function Sidebar() {
           title="Turnos"
           href={'/home/admin/turnos'}
           isActive={path.split('/').includes('turnos')}
+        />
+        <SidebarLink
+          isSmall={isSidebarSmall}
+          icon={<ListIcon />}
+          title="Clientes"
+          href={'/home/admin/clientes'}
+          isActive={path.split('/').includes('clientes')}
         />
       </section>
     </aside>
