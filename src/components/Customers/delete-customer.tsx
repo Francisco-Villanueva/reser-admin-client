@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from 'react'
 import { Button } from '../ui/button'
 import { Trash2 } from 'lucide-react'
@@ -12,7 +13,6 @@ import {
 } from '@/components/ui/dialog'
 export function DeleteCustomer({ id }: { id: string }) {
   const [isDeleting, setIsDeleting] = useState(false)
-  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const handleDelete = async () => {
     setIsDeleting(true)
@@ -25,22 +25,14 @@ export function DeleteCustomer({ id }: { id: string }) {
       // Handle error, e.g., show an error message
     } finally {
       setIsDeleting(false)
-      setIsModalOpen(false)
     }
   }
-
-  const handleModalOpen = () => setIsModalOpen(true)
-  const handleModalClose = () => setIsModalOpen(false)
 
   return (
     <>
       <Dialog>
         <DialogTrigger>
-          <Button
-            variant="destructive"
-            onClick={handleModalOpen}
-            disabled={isDeleting}
-          >
+          <Button variant="destructive" disabled={isDeleting}>
             {isDeleting ? 'Deleting...' : <Trash2 className="size-2" />}
           </Button>
         </DialogTrigger>
@@ -53,9 +45,7 @@ export function DeleteCustomer({ id }: { id: string }) {
           </DialogDescription>
           <div className="mt-4 flex justify-end space-x-4">
             <DialogTrigger asChild>
-              <Button variant="outline" onClick={handleModalClose}>
-                Cancel
-              </Button>
+              <Button variant="outline">Cancel</Button>
             </DialogTrigger>
             <Button
               variant="destructive"
