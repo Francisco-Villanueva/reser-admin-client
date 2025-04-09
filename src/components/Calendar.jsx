@@ -40,7 +40,7 @@ export default function Calendar({
     })
   })
   return (
-    <section className="flex flex-col items-center gap-2 border-2 rounded-b-md border-border ">
+    <section className="flex flex-col items-center gap-2 border-2 rounded-b-md border-border  ">
       <span
         className={` text-center uppercase text-xl font-semibold  p-2 ${canceled ? 'bg-destructive text-white' : 'bg-primary text-secondary'}   w-full`}
       >

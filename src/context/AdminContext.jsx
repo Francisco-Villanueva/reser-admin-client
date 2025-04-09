@@ -8,6 +8,9 @@ const initialState = {
   hoursToShow: [],
   appointments: [],
   dateOfFilter: undefined,
+  loadingBarberDetails: false,
+  fetchingBarbers: false,
+  fetchingAppointments: false,
   selectedBarber: { ...userModel },
   selectedDay: {},
   currentUser: { ...userModel },
@@ -30,8 +33,14 @@ export function AdminProvider({ children }) {
     dateOfFilter: undefined,
     selectedBarber: { ...userModel },
     selectedDay: {},
+    loadingBarberDetails: false,
     currentUser: { ...userModel },
+    fetchingBarbers: false,
+    fetchingAppointments: false,
   })
+  const setLoadingBarberDetails = (loadingBarberDetails) => {
+    setState((prev) => ({ ...prev, loadingBarberDetails }))
+  }
 
   const setAppointments = (appointments) => {
     setState((state) => ({
@@ -70,6 +79,11 @@ export function AdminProvider({ children }) {
   const setSelectedBarber = (selectedBarber) => {
     setState((prev) => ({ ...prev, selectedBarber }))
   }
+
+  const setFetchingBarbers = (fetchingBarbers) => {
+    setState((prev) => ({ ...prev, fetchingBarbers }))
+  }
+
   const mainHours = [
     '09:00',
     '09:30',
@@ -110,6 +124,8 @@ export function AdminProvider({ children }) {
         setAppointments,
         filterAppointments,
         setDateOfFilter,
+        setFetchingBarbers,
+        setLoadingBarberDetails,
       }}
     >
       {children}

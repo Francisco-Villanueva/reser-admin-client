@@ -5,24 +5,27 @@ import { AddIcon, BellIcon } from '@/commons/Icons'
 import TitleView from '@/commons/TitleView'
 import {PickCalendar} from '@/components/Calendar/Calendar'
 import GridTeam from '@/components/GridTeam'
-import { useStore } from '@/context/AdminContext'
 import { useAsideStore } from '@/context/AsideContext'
 import { Button } from '@/components/ui/button'
 import AppointmentList from '@/components/Tables/AppointmentList'
+import { DataProvider } from '@/components/provider/data-provider'
+import { useStore } from '@/context/AdminContext'
 
-
+import {LoaderWrapper} from '@/commons/LoaderWrapper'
 export default function AdminPage() {
-  const { barbers, dateOfFilter } = useStore()
   const { setAside } = useAsideStore()
+  const {fetchingBarbers, barbers} =useStore()
 
 
+  if(fetchingBarbers || barbers.length === 0) return <LoaderWrapper/> 
   return (
     <ChildrenLayout >
+      <>
       <section className=" flex  flex-col h-full justify-between gap-4   overflow-auto   ">
         <div className='flex flex-col gap-2'>
 
           <TitleView>Lista de peluqueros</TitleView>
-          <GridTeam team={barbers} />
+          <GridTeam  />
         </div>
         
         <div className='flex flex-col gap-2 flex-grow brder h-[70%] '>
@@ -45,8 +48,7 @@ export default function AdminPage() {
           <AddIcon />
         </Button>
       </div>
-
-     
+      </>
      
     </ChildrenLayout>
   )

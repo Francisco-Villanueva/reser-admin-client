@@ -66,7 +66,7 @@ export default function LoginForm() {
       </div>
 
       <div className="flex flex-col items-center w-5/6 m-auto gap-1">
-        <Button type="submit" className="w-full">
+        <Button type="submit" className="w-full" disabled={loading}>
           Login
         </Button>
       </div>
