@@ -1,26 +1,18 @@
 'use client'
 import React, { useState } from 'react'
 import Image from 'next/image'
-
-import {
-  DashboardIcon,
-  PersonsGroupIcon,
-  SettingsIcon,
-  ArrowLeft,
-  ArrowRight,
-  ListIcon,
-} from '@/commons/Icons'
+import { DashboardIcon, ArrowRight, ListIcon } from '@/commons/Icons'
 import SidebarLink from '@/commons/SidebarLink'
-import { useStore } from '@/context/AdminContext'
 import { usePathname } from 'next/navigation'
 import { Button } from './ui/button'
 import { useTheme } from 'next-themes'
+import { useStore } from '@/context/AdminContext'
 
 export default function Sidebar() {
   const { theme } = useTheme()
   const [showLogo, setShowLogo] = useState(true)
   const [isSidebarSmall, setIsSidebarSmall] = useState(true)
-
+  const { currentUser } = useStore()
   const toggleSidebarSize = () => {
     setIsSidebarSmall(!isSidebarSmall)
     setShowLogo(!showLogo)
@@ -60,33 +52,35 @@ export default function Sidebar() {
         </Button>
       </div>
 
-      <section className="flex flex-col max-sm:flex-row  max-sm:h-full  flex-[2] gap-4 ">
-        <SidebarLink
-          isSmall={isSidebarSmall}
-          icon={<DashboardIcon />}
-          title="Dashboard"
-          href="/home/admin"
-          isActive={
-            !path.split('/').includes('turnos') &&
-            !path.split('/').includes('clientes')
-          }
-        />
+      {currentUser && currentUser.isAdmin ? (
+        <section className="flex flex-col max-sm:flex-row  max-sm:h-full  flex-[2] gap-4 ">
+          <SidebarLink
+            isSmall={isSidebarSmall}
+            icon={<DashboardIcon />}
+            title="Dashboard"
+            href="/home/admin"
+            isActive={
+              !path.split('/').includes('turnos') &&
+              !path.split('/').includes('clientes')
+            }
+          />
 
-        <SidebarLink
-          isSmall={isSidebarSmall}
-          icon={<ListIcon />}
-          title="Turnos"
-          href={'/home/admin/turnos'}
-          isActive={path.split('/').includes('turnos')}
-        />
-        <SidebarLink
-          isSmall={isSidebarSmall}
-          icon={<ListIcon />}
-          title="Clientes"
-          href={'/home/admin/clientes'}
-          isActive={path.split('/').includes('clientes')}
-        />
-      </section>
+          <SidebarLink
+            isSmall={isSidebarSmall}
+            icon={<ListIcon />}
+            title="Turnos"
+            href={'/home/admin/turnos'}
+            isActive={path.split('/').includes('turnos')}
+          />
+          <SidebarLink
+            isSmall={isSidebarSmall}
+            icon={<ListIcon />}
+            title="Clientes"
+            href={'/home/admin/clientes'}
+            isActive={path.split('/').includes('clientes')}
+          />
+        </section>
+      ) : null}
     </aside>
   )
 }

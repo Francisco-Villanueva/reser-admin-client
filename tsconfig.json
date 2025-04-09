@@ -31,7 +31,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/models/root.store.tsx", "src/context/AdminContext.jsx", "src/app/home/admin/clientes/page.js"  ],
+, "src/models/root.store.tsx", "src/context/AdminContext.jsx", "src/app/home/admin/clientes/page.js", "src/components/provider/data-provider.jsx"  ],
   "exclude": [
     "node_modules"
   ]
