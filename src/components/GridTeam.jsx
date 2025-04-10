@@ -14,7 +14,7 @@ export default function GridTeam() {
       </div>
     )
   return (
-    <div className="flex items-center flex-wrap gap-4 justify-center  w-full max-h-full ">
+    <div className="flex items-center flex-wrap gap-4 justify-center  w-full max-h-full overflow-auto ">
       {barbers
         .sort((a, b) => a.id - b.id)
         .map((barber) => (

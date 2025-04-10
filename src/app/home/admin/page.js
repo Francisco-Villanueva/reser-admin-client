@@ -19,11 +19,8 @@ export default function AdminPage() {
     <ChildrenLayout >
       <div className='container h-full'>
         <section className=" flex  flex-col h-full   gap-4     ">
-          <div className=''>
-            <GridTeam  />
-          </div>
-          
-          <div className='flex flex-col gap-2 flex-grow py-2 h-[80%]  '>
+          <GridTeam  />
+          <div className='flex flex-col gap-2 flex-grow py-2 h-[80%] max-md:hidden '>
               <div className='flex items-start gap-8 h-full px-4 max-lg:flex-col   max-lg:items-center'>
                   <PickCalendar/>
                   <div className='h-full w-full max-h-full overflow-auto'>
