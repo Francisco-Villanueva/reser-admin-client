@@ -24,9 +24,9 @@ export default function AppointmentsList() {
   }, [id])
   return (
     <section
-      className={`flex flex-col gap-4    max-sm:gap-2    py-2  h-[95%]  max-lg:h-[90%]  max-sm:h-[90%] container  `}
+      className={`flex flex-col gap-4    max-sm:gap-2    py-2  h-[95%]  max-lg:h-[90%]  max-sm:h-[90%] md:container  `}
     >
-      <section className="flex flex-col items-center  justify-center gap-2 ">
+      <section className="flex flex-col items-center  justify-center gap-2  ">
         <Calendar
           handleDate={(date) => setDate(date)}
           selectedDay={date}

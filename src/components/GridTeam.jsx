@@ -14,7 +14,7 @@ export default function GridTeam() {
       </div>
     )
   return (
-    <div className="grid grid-cols-5 gap-2 max-lg:grid-cols-3 max-md:grid-cols-2  w-full max-h-full ">
+    <div className="grid grid-cols-5 gap-2 max-lg:grid-cols-3 max-md:grid-cols-1  w-full max-h-full ">
       {barbers
         .sort((a, b) => a.id - b.id)
         .map((barber) => (

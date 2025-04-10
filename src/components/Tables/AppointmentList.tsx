@@ -17,14 +17,14 @@ export default function AppointmentList() {
     appointmentsByDate.length - listLimit,
   )
   return (
-    <div className="flex flex-col gap-2  max-h-[90%] overflow-auto    w-full h-[90%] ]  ">
+    <div className="flex flex-col gap-2  max-h-[90%] h-[90%] md:overflow-auto    w-full    ">
       {lastAppoitnments.length ? (
         lastAppoitnments.map((appointment: Appointment) => (
           <section
             className=" flex flex-col gap-4  border border-accent  p-4 rounded-lg"
             key={appointment.id}
           >
-            <div className=" flex gap-4 justify-between">
+            <div className=" flex max-md:flex-col gap-4 justify-between">
               <div className=" flex-grow">
                 <section className="flex flex-col gap-1 ">
                   <p className="font-semibold text-lg">{appointment.name}</p>
@@ -46,11 +46,9 @@ export default function AppointmentList() {
               </div>
               <section className="flex flex-col items-end ">
                 <Badge variant="secondary">
-                  <div className="flex items-center">
-                    <p className="uppercase text-sm">
-                      {formatToYMD(appointment.date)}
-                    </p>
-                    <p className="font-semibold">{appointment.time}</p>
+                  <div className="flex items-center gap-2">
+                    <p className=" ">{formatToYMD(appointment.date)}</p>
+                    <p className="">{appointment.time}</p>
                   </div>
                 </Badge>
               </section>

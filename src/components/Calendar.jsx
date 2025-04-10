@@ -40,7 +40,7 @@ export default function Calendar({
     })
   })
   return (
-    <section className="flex flex-col items-center gap-2 border-2 rounded-b-md border-border  ">
+    <section className="flex flex-col items-center gap-2 border-2 rounded-b-md border-border   w-full ">
       <span
         className={` text-center uppercase text-xl font-semibold  p-2 ${canceled ? 'bg-destructive text-white' : 'bg-primary text-secondary'}   w-full`}
       >
@@ -51,14 +51,16 @@ export default function Calendar({
           <ArrowLeft className={'w-[14px]'} />
         </Button>
 
-        {futureDates.map((day) => (
-          <DateCard
-            canceled={canceled}
-            handleDate={() => handleDate(day)}
-            date={formatDayOfMonth(day)}
-            isSelected={day === selectedDay}
-          />
-        ))}
+        <div className="flex gap-1 max-w-[90%]  overflow-x-auto scrollbar-hide">
+          {futureDates.map((day) => (
+            <DateCard
+              canceled={canceled}
+              handleDate={() => handleDate(day)}
+              date={formatDayOfMonth(day)}
+              isSelected={day === selectedDay}
+            />
+          ))}
+        </div>
 
         <Button onClick={() => setCalenadarLimits((s) => s + 1)}>
           <ArrowRight className={'w-[14px]'} />

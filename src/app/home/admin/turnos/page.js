@@ -26,7 +26,7 @@ export default function TunosListPage() {
   return (
       <ChildrenLayout>
         
-          <div className=' container flex items-center gap-2  '>
+          <div className=' md:container flex items-center gap-2  '>
             <Users/>
             <Tabs defaultValue={selectedBarber?.id || barbers[0]?.id} className='p-0   '>
               <TabsList  >
