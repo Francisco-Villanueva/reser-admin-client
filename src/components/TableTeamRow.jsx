@@ -5,7 +5,7 @@ import { Button } from './ui/button'
 import { CalendarCheck, CalendarClock, CalendarX } from 'lucide-react'
 export default function TableTeamRow({ appointments, date, canceled = false }) {
   const { mainHours } = useStore()
-  const [showingAllList, setShowingAllList] = useState(false)
+  const [showingAllList, setShowingAllList] = useState(true)
   const organizedAppointments = {}
 
   const futureDates = [new Date(date).toISOString().split('T')[0]]
