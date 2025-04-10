@@ -24,9 +24,14 @@ export default function AppointmentsList() {
   }, [id])
   return (
     <section
-      className={`flex flex-col gap-4    max-sm:gap-2    py-2  h-[95%]  max-lg:h-[90%]  max-sm:h-[90%] `}
+      className={`flex flex-col gap-4    max-sm:gap-2    py-2  h-[95%]  max-lg:h-[90%]  max-sm:h-[90%] container  `}
     >
       <section className="flex flex-col items-center  justify-center gap-2 ">
+        <Calendar
+          handleDate={(date) => setDate(date)}
+          selectedDay={date}
+          canceled={cancelledAppointments && view === 'cancelled'}
+        />
         <div className="flex gap-2">
           <Tabs defaultValue="appointments">
             <TabsList>
@@ -46,19 +51,13 @@ export default function AppointmentsList() {
             </TabsList>
           </Tabs>
         </div>
-
-        <Calendar
-          handleDate={(date) => setDate(date)}
-          selectedDay={date}
-          canceled={cancelledAppointments && view === 'cancelled'}
-        />
       </section>
 
       {loadingBarberDetails ? (
         <LoaderWrapper text="Cargando Turnos" />
       ) : (
-        <section className="h-[80%] max-lg:h-[70%]">
-          <div className=" w-full  overflow-auto  gap-4 max-h-[100%]   max-sm:h-[100%]  ">
+        <section className="h-[80%]  max-lg:h-[70%]">
+          <div className=" h-full  ">
             {appointments ? (
               <TableTeamRow
                 appointments={
