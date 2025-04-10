@@ -1,40 +1,36 @@
 import AppointmentCard from '@/commons/AppointmentCard'
-import React, { useState } from 'react'
-import { Button } from './ui/button'
+import React, { useEffect, useState } from 'react'
 
-export default function Appoitments({ appointment, canceled = false }) {
-  const { date, appointments } = appointment
-
+export default function Appoitments({
+  appointments,
+  canceled = false,
+  showingAllList,
+}) {
   const initialState = canceled
     ? appointments.filter((appointment) => appointment.name !== '')
     : appointments
 
   const [appointmentsToShow, setAppointmnetsToShow] = useState(initialState)
-  const [showingAllList, setShowingAllList] = useState(false)
 
-  const handleAppointmnetsToShow = () => {
-    setShowingAllList(!showingAllList)
-
-    if (!showingAllList) {
+  useEffect(() => {
+    if (canceled) {
       setAppointmnetsToShow(
         appointments.filter((appointment) => appointment.name !== ''),
       )
-      return
+    } else {
+      if (!showingAllList) {
+        setAppointmnetsToShow(
+          appointments.filter((appointment) => appointment.name !== ''),
+        )
+        return
+      }
+      setAppointmnetsToShow(appointments)
     }
-    setAppointmnetsToShow(appointments)
-  }
+  }, [appointments])
+
   return (
     <div className={`flex flex-col gap-2       `}>
       <div className="flex items-center gap-2 ">
-        <Button
-          onClick={handleAppointmnetsToShow}
-          variant="outline"
-          size="sm"
-          className="text-xs"
-          disabled={canceled}
-        >
-          {showingAllList ? 'Ver todos los horarios' : 'Ver Agendados'}
-        </Button>
         <span className="text-xs font-medium text-gray-500">
           {
             appointmentsToShow.filter((appointment) => appointment.name !== '')
@@ -44,14 +40,12 @@ export default function Appoitments({ appointment, canceled = false }) {
         </span>
       </div>
       {!appointmentsToShow.length ? (
-        <span className="h-full">No hay trunos cancelados</span>
+        <span className="h-full">
+          No hay trunos {canceled ? ' Cancelados' : ' Agendados'}
+        </span>
       ) : (
         appointmentsToShow.map((appointment) => (
-          <AppointmentCard
-            appointment={appointment}
-            date={date}
-            canceled={canceled}
-          />
+          <AppointmentCard appointment={appointment} canceled={canceled} />
         ))
       )}
     </div>

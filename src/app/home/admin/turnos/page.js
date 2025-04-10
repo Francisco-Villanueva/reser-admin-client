@@ -5,6 +5,7 @@ import { useStore } from '@/context/AdminContext'
 import { BarberServices } from '@/services/barber.services'
 import React, { useEffect, useState } from 'react'
 import { Tabs,  TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Users } from 'lucide-react'
 
 export default function TunosListPage() {
   const { barbers, selectedBarber, setSelectedBarber, setLoadingBarberDetails } = useStore()
@@ -25,14 +26,16 @@ export default function TunosListPage() {
   return (
       <ChildrenLayout>
         
-          <div className='flex gap-4  items-center  justify-between max-md:justify-center  md:w-full mx-auto  md:border border-border rounded-md   '>
-            <div className='px-2 font-semibold max-md:hidden '>Peluqueros</div>
+          <div className=' container flex items-center gap-2  '>
+            <Users/>
             <Tabs defaultValue={selectedBarber?.id || barbers[0]?.id} className='p-0   '>
               <TabsList  >
               {barbers.map((barber) => (
                 <TabsTrigger
                 value={barber.id}                
                 onClick={() => handleSelectBarber(barber.id)}
+                key={barber.id}
+                className='text-xs'
                 > 
                   {barber.name}
                 </TabsTrigger>

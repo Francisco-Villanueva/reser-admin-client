@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation'
 import { Button } from './ui/button'
 import { useTheme } from 'next-themes'
 import { useStore } from '@/context/AdminContext'
+import { SquareUser } from 'lucide-react'
 
 export default function Sidebar() {
   const { theme } = useTheme()
@@ -74,7 +75,7 @@ export default function Sidebar() {
           />
           <SidebarLink
             isSmall={isSidebarSmall}
-            icon={<ListIcon />}
+            icon={<SquareUser />}
             title="Clientes"
             href={'/home/admin/clientes'}
             isActive={path.split('/').includes('clientes')}
